@@ -1,0 +1,9 @@
+name: Notify Microsoft 365
+on: [push]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification to Microsoft 354
+        run :|
+          ${{secrets.M365_WEBHOOK_URL}}
