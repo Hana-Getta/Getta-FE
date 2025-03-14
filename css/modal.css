@@ -85,7 +85,7 @@ p {
 .modal_top {
   font-size: 2rem;
   color: #cccccc;
-  flex: 1;
+  height: 100%;
 }
 .modal_middle {
   align-self: flex-start;
@@ -93,7 +93,7 @@ p {
   display: flex;
   justify-content: center;
   width: 100%;
-  flex: 2;
+  gap: 3%;
 }
 .modal_middle > div {
   width: 40%;
@@ -101,15 +101,8 @@ p {
 .modal_middle > div > p {
   color: #cccccc;
   font-size: 1.2em;
-  padding-left: 15%;
+  padding-left: 18%;
   padding-top: 15%;
-}
-.modal_donut {
-  color: #cccccc;
-  font-size: 1.2em;
-  align-self: center;
-  justify-self: center;
-  padding-left: 10%;
 }
 
 .modal_bottom {
@@ -119,13 +112,49 @@ p {
   display: flex;
   gap: 10%;
   justify-content: center;
-  flex: 1;
 }
 .modal_bottom > button {
   width: 30%;
-  height: 60%;
+  height: 50%;
   color: #cccccc;
   border: solid 2px #474747;
   background-color: #242424;
   overflow: hidden;
+}
+.chart-container {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  margin-left: 10%;
+}
+.chart {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: conic-gradient(#4caf50 0% 0%, #ddd 0% 100%);
+  position: relative;
+  transition: background 0.5s ease-in-out;
+}
+
+.chart::after {
+  content: "";
+  width: 48%;
+  height: 48%;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.2;
+  z-index: 20;
 }
