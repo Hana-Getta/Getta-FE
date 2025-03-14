@@ -32,7 +32,35 @@ section {
   flex: 1;
 }
 
-#content {
+main {
   background-color: var(--backgroundColor);
   flex: 7;
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumb {
+  width: 100%;
+  display: flex;
+}
+
+.breadcrumb #select {
+  width: 130px;
+  padding-top: 5px;
+  border-top: 3px solid var(--gettaBlue);
+  border-bottom: none;
+  z-index: 100;
+  color: var(--lightGreyText);
+  text-align: center;
+  font-size: 20px;
+}
+
+.breadcrumb div {
+  flex: 1;
+  border-left: 5px solid var(--borderColor);
+  border-bottom: 5px solid var(--borderColor);
+}
+
+main #content {
+  flex: 1;
 }
