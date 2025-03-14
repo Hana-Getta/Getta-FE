@@ -1,0 +1,15 @@
+#sidebar_sidebar {
+  height: 100%;
+  display: flex;
+  background-color: var(--backgroundColor);
+}
+
+#sidebar_sidebar #left {
+  flex: 4;
+  border-right: 5px solid var(--borderColor);
+}
+
+#sidebar_sidebar #right {
+  flex: 6;
+  border-right: 5px solid var(--borderColor);
+}
