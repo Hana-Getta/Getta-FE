@@ -11,14 +11,14 @@
 
 .header_dots {
   position: absolute;
-  left: 10px;
+  left: 15px;
   display: flex;
-  gap: 8px;
+  gap: 9px;
 }
 
 .header_dots p {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
 }
 
