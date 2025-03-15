@@ -44,6 +44,7 @@
 }
 .language_wrapper:hover {
   border-color: #007acc;
+  cursor: pointer;
 }
 .language_name {
   padding-left: 10%;
