@@ -5,11 +5,30 @@
 }
 
 #sidebar_sidebar #left {
-  flex: 4;
+  flex: 3;
   border-right: 5px solid var(--borderColor);
 }
 
 #sidebar_sidebar #right {
-  flex: 6;
+  flex: 7;
   border-right: 5px solid var(--borderColor);
+}
+
+#left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 30px;
+}
+#left > img {
+  width: 50%;
+  height: auto;
+  filter: invert(47%) sepia(56%) saturate(0%) hue-rotate(75deg) brightness(92%)
+    contrast(88%);
+}
+
+#left > img:hover {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(160%)
+    contrast(90%);
 }
