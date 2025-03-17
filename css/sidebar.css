@@ -45,6 +45,7 @@
   height: 100%;
   background-color: transparent;
   position: absolute;
+  cursor: pointer;
 }
 .selected > div {
   background-color: var(--gettaBlue);
