@@ -112,14 +112,17 @@
 
 .record_item {
   display: grid;
-  grid-template-columns: 100px 1fr 1fr;
-  column-gap: 20px;
+  grid-template-columns: 100px 100px 1fr 1fr;
+  column-gap: 40px;
   color: var(--lightGreyText);
   font-size: 25px;
 }
 
-.record_nickname {
+.record_language {
   color: var(--gettaBlue);
+}
+
+.record_nickname {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
