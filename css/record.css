@@ -23,9 +23,8 @@
 
 .record_top5 {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  gap: 20px;
   width: 100%;
   height: 100%;
 }
@@ -72,18 +71,30 @@
   font-size: 20px;
 }
 
-.others .second_record {
+.others .record_2 {
   font-size: 28px;
 }
 
-.others .third_record {
+.others .record_3 {
   font-size: 24px;
 }
 
-.others .fourth_record {
+.others .record_4 {
   font-size: 20px;
 }
 
-.others .fifth_record {
+.others .record_5 {
   font-size: 16px;
+}
+
+.others .only_first {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no_record_section {
+  color: var(--lightGreyText);
+  font-size: 25px;
+  font-weight: 500;
 }
