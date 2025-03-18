@@ -37,6 +37,7 @@
   width: 100%;
   display: flex;
   gap: 5%;
+  align-items: center;
 }
 .title_dots {
   margin-top: -4%;
@@ -98,6 +99,7 @@
 /* 언더(화살표) 아이콘 기본 회전 상태 */
 .under_arrow {
   width: 10px;
+  height: 10px;
   transition: transform 0.3s ease;
   transform: rotate(-90deg);
 }
