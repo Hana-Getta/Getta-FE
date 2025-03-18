@@ -48,40 +48,28 @@
   margin: 0 -4px;
 }
 
-/* 'show' 클래스를 추가하면 드롭다운이 보이도록 */
-.ranker_dropdown.show {
-  display: block;
-}
-.ranker_dropdown {
-  display: none; /* 기본적으로 숨김 */
-  width: 100%;
-}
-
 /* 초기 상태 (숨김) */
 .ranker_dropdown {
-  display: block;
-  transform: scaleY(0);
+  display: none; /* 기본적으로 숨김 */
+  opacity: 0; /* 기본 상태에서는 보이지 않음 */
+  width: 100%;
   transform-origin: top;
-  transition: transform 0.3s ease-in-out;
-  overflow: hidden; /* 내용이 삐져나오는 것 방지 */
+  transition: opacity 0.3s ease-in-out; /* opacity로만 부드럽게 처리 */
+  overflow: hidden;
 }
 
 /* 'show' 클래스 추가 시 드롭다운 열림 */
 .ranker_dropdown.show {
-  transform: scaleY(1);
+  display: block; /* 드롭다운 보이기 */
+  opacity: 1; /* 드롭다운이 보이도록 */
 }
 
 /* 기본적으로 서브 드롭다운 숨김 */
 .sub_dropdown {
   display: none;
-  padding-left: 20px;
+  padding-left: 25px;
   transform-origin: top;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-/* 'show' 클래스가 추가되면 서브 드롭다운이 펼쳐짐 */
-.sub_dropdown.show {
-  display: block;
 }
 
 /* 언어 항목 헤더 (이미지 + 텍스트) */
@@ -100,35 +88,27 @@
 .under_arrow {
   width: 10px;
   height: 10px;
-  transition: transform 0.3s ease;
   transform: rotate(-90deg);
 }
-
-/* 드롭다운 */
-.sub_dropdown {
-  display: none;
-  padding-left: 25px;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+/* 서브 드롭다운이 열릴 때, 아이콘을 0도로 회전 */
+.sub_dropdown.show .under_arrow {
+  transform: rotate(0deg);
 }
 
 /* 드롭다운 보이기 */
 .sub_dropdown.show {
   display: block;
+  opacity: 1;
 }
-
 /* 드롭다운 내부 아이템 스타일 */
 .sub_item {
   padding: 2px;
-  background: #222;
   color: white;
   cursor: pointer;
   transition: #2a2d2e 0.2s ease;
   white-space: nowrap;
 }
 
-.sub_item:hover {
-  background: #444;
-}
 .sub_icon {
   width: 17px;
   height: 17px;
@@ -136,4 +116,8 @@
 .sub_ranker {
   display: flex;
   align-items: center;
+}
+.sub_ranker:hover,
+.sub_ranker:hover {
+  background: #44444457;
 }
