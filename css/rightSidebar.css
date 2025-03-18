@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   color: #cccccc;
-  padding-left: 5%;
+  padding-left: 1%;
   padding-right: 5%;
 }
 
@@ -19,20 +19,24 @@
   justify-content: space-between;
 }
 
+.language_rank_folder {
+  padding-left: 14px;
+  margin-top: 7px;
+}
 .right_content_title {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 16px;
 }
-
 .right_content_title > div:first-child {
   font-weight: bold;
+  padding-left: 17px;
 }
 .ranker_folder_top {
   width: 100%;
   display: flex;
   gap: 5%;
-  margin-top: 14%;
 }
 .title_dots {
   margin-top: -4%;
@@ -49,7 +53,7 @@
 }
 .ranker_dropdown {
   display: none; /* 기본적으로 숨김 */
-  padding-left: 20px;
+  width: 100%;
 }
 
 /* 초기 상태 (숨김) */
@@ -79,11 +83,6 @@
   display: block;
 }
 
-/* 언어 목록 스타일 */
-.language_rank_folder {
-  padding: 1px 0;
-}
-
 /* 언어 항목 헤더 (이미지 + 텍스트) */
 .language_drop_top {
   display: flex;
@@ -93,6 +92,7 @@
 }
 .ranker_folder_top {
   cursor: pointer;
+  padding-left: 3px;
 }
 
 /* 언더(화살표) 아이콘 기본 회전 상태 */
@@ -116,15 +116,22 @@
 
 /* 드롭다운 내부 아이템 스타일 */
 .sub_item {
-  padding: 5px 10px;
+  padding: 2px;
   background: #222;
   color: white;
-  margin: 2px 0;
-  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: #2a2d2e 0.2s ease;
+  white-space: nowrap;
 }
 
 .sub_item:hover {
   background: #444;
+}
+.sub_icon {
+  width: 17px;
+  height: 17px;
+}
+.sub_ranker {
+  display: flex;
+  align-items: center;
 }

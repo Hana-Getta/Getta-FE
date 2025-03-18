@@ -29,15 +29,15 @@ rankerDropTop.addEventListener("click", function () {
 
 languageToggles.forEach((toggle) => {
   toggle.addEventListener("click", function () {
-    const subDropdown = this.nextElementSibling; // 바로 아래 있는 .sub_dropdown
+    const subDropdown = this.nextElementSibling;
     const underArrow = this.querySelector(".under_arrow");
 
     if (subDropdown.classList.contains("show")) {
       subDropdown.classList.remove("show");
-      underArrow.style.transform = "rotate(-90deg)"; // 닫힐 때 오른쪽 방향
+      underArrow.style.transform = "rotate(-90deg)";
     } else {
       subDropdown.classList.add("show");
-      underArrow.style.transform = "rotate(0deg)"; // 열릴 때 아래 방향
+      underArrow.style.transform = "rotate(0deg)";
     }
   });
 });
