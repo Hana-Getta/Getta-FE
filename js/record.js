@@ -51,6 +51,14 @@ $(document).ready(function () {
       const othersDiv = document.createElement("div");
       othersDiv.className = "others";
 
+      while (otherRecords.length < 4) {
+        otherRecords.push({
+          username: "-",
+          wordsPerMinute: "-",
+          accuracy: "-",
+        });
+      }
+
       if (otherRecords.length > 0) {
         othersDiv.innerHTML = `
           <p class="record_header">닉네임</p>
@@ -59,18 +67,19 @@ $(document).ready(function () {
         `;
 
         otherRecords.forEach((record, index) => {
+          // - 이면 뒤에 단위 안 나오게
+          const wpmText =
+            record.wordsPerMinute === "-" ? "-" : `${record.wordsPerMinute} 타`;
+          const accuracyText =
+            record.accuracy === "-" ? "-" : `${record.accuracy}%`;
+
           othersDiv.innerHTML += `
             <p class="record_${index + 2} nickname">${record.username}</p>
-            <p class="record_${index + 2}">${record.wordsPerMinute} 타</p>
-            <p class="record_${index + 2}">${record.accuracy}%</p>
+            <p class="record_${index + 2}">${wpmText}</p>
+            <p class="record_${index + 2}">${accuracyText}</p>
           `;
         });
-      } else {
-        // 1등만 있고, 나머지가 없음
-        othersDiv.className += "only_first";
-        othersDiv.appendChild(noRecordP);
       }
-
       recordTop5.appendChild(othersDiv);
     }
     recordDiv.appendChild(recordTop5);
