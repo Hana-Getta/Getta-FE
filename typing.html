@@ -14,7 +14,10 @@
 
     <!-- css -->
     <link rel="stylesheet" href="./css/global.css" />
+
     <!-- 추가할 개별 css -->
+    <link rel="stylesheet" href="./css/keyboard.css" />
+    <link rel="stylesheet" href="./css/typing.css" />
     <title>Getta</title>
   </head>
   <body>
@@ -24,17 +27,27 @@
       <div id="sidebar"></div>
       <main>
         <div class="breadcrumb">
-          <p id="select">Start</p>
+          <p id="select">Typing</p>
           <div></div>
         </div>
-        <div id="content"></div>
+        <div id="content">
+          <div id="text-display"></div>
+          <div class="keyboard-container">
+            <div class="simple-keyboard"></div>
+          </div>
+        </div>
       </main>
     </section>
+
     <!-- js -->
     <script
       type="text/javascript"
       src="https://code.jquery.com/jquery-3.6.0.min.js"
     ></script>
     <script type="text/javascript" src="./js/defaultComponent.js"></script>
+
+    <!-- 개별 js -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <script type="text/javascript" src="./js/typing.js"></script>
   </body>
 </html>
