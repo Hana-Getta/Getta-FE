@@ -5,3 +5,7 @@ $(document).ready(function () {
     window.location.href = "typing.html";
   });
 });
+
+const nickName = localStorage.getItem("nowUser");
+const user = document.getElementById("select");
+user.innerText = nickName;
