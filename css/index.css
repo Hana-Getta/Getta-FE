@@ -126,7 +126,7 @@
 
 .record_item {
   display: grid;
-  grid-template-columns: 100px 100px 1fr 1fr;
+  grid-template-columns: 100px 80px 100px 100px;
   column-gap: 40px;
   color: var(--lightGreyText);
   font-size: 20px;

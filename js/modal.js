@@ -20,17 +20,21 @@ $(function () {
   }
 
   // 모달 열기 + 도넛 차트 업데이트
-  function showModal(percentage) {
+  function showModal(cpm, percentage) {
     modal.classList.add("show");
+    document.getElementById("cpm_value").innerText = `CPM : ${cpm}`;
+    document.getElementById(
+      "accuracy_value"
+    ).innerText = `정확도 : ${percentage}%`;
     updateChart(percentage); // 차트 업데이트 실행
   }
 
   closeBtn.addEventListener("click", function () {
     modal.classList.remove("show");
-    window.location.href = "../index.html";
+    window.location.href = "./index.html";
   });
   restartBtn.addEventListener("click", function () {
-    window.location.href = "../typing.html";
+    window.location.href = "./typing.html";
   });
 
   // 모달 바깥 영역 클릭 시 닫기

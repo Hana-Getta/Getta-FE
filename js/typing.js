@@ -13,48 +13,50 @@ function LangRecord(username, cpm, accuracy, time) {
   this.time = time;
 }
 
-const textLines = [
-  "const delayedGreeting = (message, delay) => {",
-  "  return new Promise((resolve) => {",
-  "    setTimeout(() => {",
-  "      console.log(message);",
-  "      resolve();",
-  "    }, delay);",
-  "  });",
-  "};",
-  "",
-  "const fetchData = () => {",
-  "  return new Promise((resolve) => {",
-  "    setTimeout(() => {",
-  "      resolve('Data loaded successfully.');",
-  "    }, 1500);",
-  "  });",
-  "};",
-  "",
-  "const processNumbers = (numbers) => {",
-  "  return numbers.map(num => num * 2).filter(num => num > 10);",
-  "};",
-  "",
-  "const main = async () => {",
-  "  console.log('Starting program...');",
-  "",
-  '  const greeter = new Greeter("Hello, World!");',
-  "  greeter.greet();",
-  "",
-  "  await delayedGreeting('This message appears after 2 seconds.', 2000);",
-  "",
-  "  const data = await fetchData();",
-  "  console.log(data);",
-  "",
-  "  const numbers = [3, 5, 7, 10, 15];",
-  "  const processed = processNumbers(numbers);",
-  "  console.log('Processed numbers:', processed);",
-  "",
-  "  console.log('Program finished.');",
-  "};",
-  "",
-  "main();",
-];
+// const textLines = [
+//   "const delayedGreeting = (message, delay) => {",
+//   "  return new Promise((resolve) => {",
+//   "    setTimeout(() => {",
+//   "      console.log(message);",
+//   "      resolve();",
+//   "    }, delay);",
+//   "  });",
+//   "};",
+//   "",
+//   "const fetchData = () => {",
+//   "  return new Promise((resolve) => {",
+//   "    setTimeout(() => {",
+//   "      resolve('Data loaded successfully.');",
+//   "    }, 1500);",
+//   "  });",
+//   "};",
+//   "",
+//   "const processNumbers = (numbers) => {",
+//   "  return numbers.map(num => num * 2).filter(num => num > 10);",
+//   "};",
+//   "",
+//   "const main = async () => {",
+//   "  console.log('Starting program...');",
+//   "",
+//   '  const greeter = new Greeter("Hello, World!");',
+//   "  greeter.greet();",
+//   "",
+//   "  await delayedGreeting('This message appears after 2 seconds.', 2000);",
+//   "",
+//   "  const data = await fetchData();",
+//   "  console.log(data);",
+//   "",
+//   "  const numbers = [3, 5, 7, 10, 15];",
+//   "  const processed = processNumbers(numbers);",
+//   "  console.log('Processed numbers:', processed);",
+//   "",
+//   "  console.log('Program finished.');",
+//   "};",
+//   "",
+//   "main();",
+// ];
+
+const textLines = ["main();"];
 
 const origin = textLines;
 
@@ -111,7 +113,7 @@ function updateScore() {
   document.getElementById(
     "accuracy_score"
   ).textContent = `정확도 : ${accuracy}%`;
-  document.getElementById("cpm_score").textContent = `cpm : ${cpm}`;
+  document.getElementById("cpm_score").textContent = `CPM : ${cpm}`;
 }
 
 function startCPMTracking() {
@@ -168,7 +170,7 @@ function updateDisplay() {
 
   if (currentLineIndex >= textLines.length) {
     finalizeResult();
-    showModal(parseInt(result.accuracy));
+    showModal(result.cpm, parseInt(result.accuracy));
     return;
   }
 

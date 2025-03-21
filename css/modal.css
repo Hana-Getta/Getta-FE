@@ -82,7 +82,7 @@
   justify-content: flex-end;
   width: 100%;
   gap: 3%;
-  padding-left: 10%;
+  padding-left: 15%;
   padding-right: 5%;
 }
 
@@ -95,7 +95,7 @@
 
 .value_container > p {
   color: #cccccc;
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: 400;
 }
 
