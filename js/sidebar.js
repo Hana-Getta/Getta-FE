@@ -83,3 +83,9 @@ displayRankers(
 displayRankers("Python", "py_sub_dropdown", "./images/python.png", "py");
 displayRankers("Java", "java_sub_dropdown", "./images/java.png", "java");
 displayRankers("HTML", "html_sub_dropdown", "./images/html.png", "html");
+
+// 게임버튼 누르면 게임창으로 이동
+$("#game_select").click(function (e) {
+  e.preventDefault();
+  window.location.href = "game.html";
+});

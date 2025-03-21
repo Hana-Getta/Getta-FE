@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- default Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/game.css" />
+    <title>Getta</title>
+  </head>
+  <body>
+    <div id="loading"></div>
+    <div id="header"></div>
+    <section>
+      <div id="sidebar"></div>
+      <main>
+        <div class="breadcrumb">
+          <p id="select">Records</p>
+          <div></div>
+        </div>
+        <div id="content">
+          <div id="content_wrapper">
+            <div id="game_container"></div>
+            <div id="end_line">
+              &lt;!------------------------------------------------------------------------------
+              End Line
+              ------------------------------------------------------------------------------&gt;
+            </div>
+            <input type="text" id="input_field" placeholder="단어 입력..." />
+            <p>점수: <span id="score">0</span></p>
+          </div>
+        </div>
+      </main>
+    </section>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script type="text/javascript" src="./js/defaultComponent.js"></script>
+    <script src="./js/game.js"></script>
+  </body>
+</html>
