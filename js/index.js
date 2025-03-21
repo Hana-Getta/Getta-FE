@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const users = localStorage.getItem("users");
   const recordSection = $("#record_section");
-  const languages = ["C", "Python", "Java", "HTML"];
+  const languages = ["JavaScript", "Python", "Java", "HTML"];
 
   if (!users) {
     const p = document.createElement("p");

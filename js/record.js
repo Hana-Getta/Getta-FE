@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const recordSection = $("#content");
-  const languages = ["C", "Python", "Java", "HTML"];
+  const languages = ["JavaScript", "Python", "Java", "HTML"];
 
   recordSection.empty();
 
