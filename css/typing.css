@@ -2,10 +2,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   box-sizing: border-box;
 }
 
+/* 결과 보여주는 곳 */
+#score_display {
+  display: flex;
+  gap: 20px;
+}
+
+/* 텍스트 보여주는 곳 */
 #text-display {
   white-space: pre-wrap;
   font-size: 27px;
@@ -46,6 +53,7 @@
   color: black;
 }
 
+/* 키보드 보여주는 곳 */
 .keyboard-container {
   width: calc(70% + 60px);
 }

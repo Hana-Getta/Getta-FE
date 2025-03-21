@@ -1,11 +1,13 @@
 const textLines = [
-  "#include <iostream>",
+  "'#include <iostream>",
   "using namespace std;",
   "int main() {",
   '  cout << "Hello, World!" << endl;',
   "  return 0;",
   "ll}",
 ];
+
+const origin = textLines;
 
 let currentLineIndex = 0;
 let currentInput = "";
@@ -42,6 +44,40 @@ const keyboard = new SimpleKeyboard.default({
     "{space}": " ",
   },
 });
+
+// 정확도 및 시간 로직
+let totalTyped = 0; // 총 타자 수
+let correctTyped = 0; // 정확히 입력한 문자 수
+let startTime = null; // 타이핑 시작 시간
+let cpmInterval = null; // CPM 계산을 위한 타이머
+let result = null; // 결과를 저장할 객체
+let isCompleted = false; // 입력 완료 여부를 추적하는 플래그
+
+function updateScore() {
+  const accuracy =
+    totalTyped > 0 ? ((correctTyped / totalTyped) * 100).toFixed(2) : 100;
+  const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
+  const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
+
+  document.getElementById("accuracy").textContent = `정확도: ${accuracy}%`;
+  document.getElementById("cpm").textContent = `CPM: ${cpm}`;
+}
+
+function startCPMTracking() {
+  if (isCompleted) return; // 입력 완료 상태에서는 타이머 시작 중단
+
+  if (!startTime) {
+    startTime = Date.now(); // 타이핑 시작 시간 기록
+  }
+  if (!cpmInterval) {
+    cpmInterval = setInterval(updateScore, 1000); // 1초마다 점수 업데이트
+  }
+}
+
+function stopCPMTracking() {
+  clearInterval(cpmInterval);
+  cpmInterval = null;
+}
 
 function updateDisplay() {
   textDisplay.innerHTML = "";
@@ -88,8 +124,31 @@ function updateDisplay() {
 }
 
 function handleInput(input) {
+  if (isCompleted) return; // 입력 완료 상태에서는 추가 처리 중단
+  startCPMTracking(); // 타이핑 시작 시 CPM 추적 시작
+
   if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(input)) {
     return;
+  }
+
+  if (input.length < currentInput.length) {
+    // Backspace 입력 처리
+    const removedChar = currentInput[currentInput.length - 1];
+    const expectedChar = textLines[currentLineIndex][currentInput.length - 1];
+
+    if (removedChar === expectedChar) {
+      correctTyped--; // 정확히 입력한 문자 수 감소
+    }
+    totalTyped--; // 총 타자 수 감소
+  } else {
+    // 일반 입력 처리
+    totalTyped++; // 타자 수 증가
+    const currentChar = textLines[currentLineIndex][input.length - 1];
+    const typedChar = input[input.length - 1];
+
+    if (typedChar === currentChar) {
+      correctTyped++; // 정확히 입력한 문자 수 증가
+    }
   }
 
   currentInput = input;
@@ -97,9 +156,60 @@ function handleInput(input) {
   if (currentInput.length >= textLines[currentLineIndex].length) {
     currentLineIndex++;
     currentInput = "";
+
+    // 마지막 줄까지 입력 완료 시 처리
+    if (currentLineIndex >= textLines.length) {
+      finalizeResult(); // 결과 저장 및 계산 중단
+      return;
+    }
   }
+
   updateDisplay();
+  updateScore(); // 점수 업데이트
   keyboard.setInput(currentInput);
+}
+
+function finalizeResult() {
+  // 정확도와 CPM 값을 result 객체에 저장
+  const accuracy =
+    totalTyped > 0 ? ((correctTyped / totalTyped) * 100).toFixed(2) : 100;
+  const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
+  const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
+
+  result = {
+    accuracy: `${accuracy}%`, // 문자열로 저장
+    cpm: cpm, // 숫자형으로 저장
+    totalTyped: totalTyped, // 숫자형으로 저장
+  };
+
+  // 계산 중단
+  stopCPMTracking();
+
+  // 입력 완료 상태로 설정
+  isCompleted = true;
+
+  // 화면에 고정된 값 표시
+  document.getElementById(
+    "typed-count"
+  ).textContent = `타자 수: ${result.totalTyped}`;
+  document.getElementById(
+    "accuracy"
+  ).textContent = `정확도: ${result.accuracy}`;
+  document.getElementById("cpm").textContent = `CPM: ${result.cpm}`;
+
+  console.log("Final Result:", result); // 디버깅용 출력
+}
+
+function calculateTotalScore() {
+  // accuracy를 숫자형으로 변환
+  const numericAccuracy = parseFloat(result.accuracy); // "95.67%" -> 95.67
+  const weightAccuracy = 0.7; // 정확도 가중치
+  const weightCpm = 0.3; // CPM 가중치
+
+  // 총점 계산
+  const totalScore = numericAccuracy * weightAccuracy + result.cpm * weightCpm;
+  console.log(`총점: ${totalScore.toFixed(2)}`);
+  return totalScore;
 }
 
 function highlightNextKey() {
@@ -263,4 +373,7 @@ document.addEventListener("keyup", (event) => {
     keyElement.classList.remove("pressed-key");
   }
 });
+
 updateDisplay();
+// 페이지를 떠날 때 타이머 정리
+window.addEventListener("beforeunload", stopCPMTracking);
