@@ -44,44 +44,42 @@ languageToggles.forEach((toggle) => {
   });
 });
 
-// JS랭커 나타내기
-const JSRankers = JSON.parse(localStorage.getItem("C"));
-JSRankers.forEach((data) => {
-  console.log(data.username);
-  let subDropdown = document.getElementById("sub_dropdown");
-  // sub_ranker 추가
-  const newDiv = document.createElement("div");
-  newDiv.className = "sub_ranker";
-  const newSubRanker = subDropdown.appendChild(newDiv);
-  // sub_icon 추가
-  const subIcon = document.createElement("img");
-  subIcon.className = "sub_icon";
-  subIcon.src = "./images/javascript.png";
-  newSubRanker.appendChild(subIcon);
-  // sub_item 추가
-  const subItem = document.createElement("div");
-  subItem.className = "sub_item";
-  subItem.textContent = `${data.username}.js`;
-  newSubRanker.appendChild(subItem);
-});
+// 랭커 데이터를 화면에 추가하는 함수
+function displayRankers(language, elementId, imageSrc, fileExtension) {
+  const rankers = JSON.parse(localStorage.getItem(language));
 
-// // 랭커 나타내기
-// const PyRankers = JSON.parse(localStorage.getItem("Python"));
-// PyRankers.forEach((data) => {
-//   console.log(data.username);
-//   let subDropdown = document.getElementById("sub_dropdown");
-//   // sub_ranker 추가
-//   const newDiv = document.createElement("div");
-//   newDiv.className = "sub_ranker";
-//   const newSubRanker = subDropdown.appendChild(newDiv);
-//   // sub_icon 추가
-//   const subIcon = document.createElement("img");
-//   subIcon.className = "sub_icon";
-//   subIcon.src = "./images/javascript.png";
-//   newSubRanker.appendChild(subIcon);
-//   // sub_item 추가
-//   const subItem = document.createElement("div");
-//   subItem.className = "sub_item";
-//   subItem.textContent = `${data.username}.py`;
-//   newSubRanker.appendChild(subItem);
-// });
+  if (rankers) {
+    const subDropdown = document.getElementById(elementId);
+    rankers.forEach((data) => {
+      // sub_ranker 추가
+      const newDiv = document.createElement("div");
+      newDiv.className = "sub_ranker";
+      const newSubRanker = subDropdown.appendChild(newDiv);
+
+      // sub_icon 추가
+      const subIcon = document.createElement("img");
+      subIcon.className = "sub_icon";
+      subIcon.src = imageSrc;
+      newSubRanker.appendChild(subIcon);
+
+      // sub_item 추가
+      const subItem = document.createElement("div");
+      subItem.className = "sub_item";
+      subItem.textContent = `${data.username}.${fileExtension}`;
+      newSubRanker.appendChild(subItem);
+    });
+  } else {
+    console.log(`${language} data not found`);
+  }
+}
+
+// 각 언어별로 랭커 추가하기
+displayRankers(
+  "JavaScript",
+  "js_sub_dropdown",
+  "./images/javascript.png",
+  "js"
+);
+displayRankers("Python", "py_sub_dropdown", "./images/python.png", "py");
+displayRankers("Java", "java_sub_dropdown", "./images/java.png", "java");
+displayRankers("HTML", "html_sub_dropdown", "./images/html.png", "html");
