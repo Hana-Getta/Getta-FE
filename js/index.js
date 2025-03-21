@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const users = localStorage.getItem("users");
   const recordSection = $("#record_section");
-  const languages = ["JavaScript", "Python", "Java", "HTML"];
+  const languages = ["JavaScript", "Python", "JAVA", "HTML"];
 
   if (!users) {
     const p = document.createElement("p");
@@ -22,17 +22,17 @@ $(document).ready(function () {
 
           const p_lang = document.createElement("p");
           p_lang.className = "record_language";
-          p_lang.innerText = firstRecord.language;
+          p_lang.innerText = lang;
 
           const p_nickname = document.createElement("p");
           p_nickname.className = "record_nickname";
           p_nickname.innerText = firstRecord.username;
 
           const p_cpm = document.createElement("p");
-          p_cpm.innerText = `${firstRecord.wordsPerMinute} CPM`;
+          p_cpm.innerText = `${firstRecord.cpm} cpm`;
 
           const p_accuracy = document.createElement("p");
-          p_accuracy.innerText = `${firstRecord.accuracy}%`;
+          p_accuracy.innerText = `${firstRecord.accuracy}`;
 
           div.append(p_lang, p_nickname, p_cpm, p_accuracy);
           recordSection.append(div);

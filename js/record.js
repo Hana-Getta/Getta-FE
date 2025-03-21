@@ -1,6 +1,6 @@
 $(document).ready(function () {
   const recordSection = $("#content");
-  const languages = ["JavaScript", "Python", "Java", "HTML"];
+  const languages = ["JavaScript", "Python", "JAVA", "HTML"];
 
   recordSection.empty();
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
 
       const firstRecordDiv = document.createElement("div");
       firstRecordDiv.className = "first_record";
-      firstRecordDiv.innerHTML = `<p>${firstRecord.wordsPerMinute} 타</p><p>${firstRecord.accuracy}%</p>`;
+      firstRecordDiv.innerHTML = `<p>${firstRecord.cpm} cpm</p><p>${firstRecord.accuracy}</p>`;
 
       firstDiv.appendChild(firstNickname);
       firstDiv.appendChild(firstRecordDiv);
@@ -62,16 +62,15 @@ $(document).ready(function () {
       if (otherRecords.length > 0) {
         othersDiv.innerHTML = `
           <p class="record_header">닉네임</p>
-          <p class="record_header">타수</p>
+          <p class="record_header">CPM</p>
           <p class="record_header">정확도</p>
         `;
 
         otherRecords.forEach((record, index) => {
           // - 이면 뒤에 단위 안 나오게
-          const wpmText =
-            record.wordsPerMinute === "-" ? "-" : `${record.wordsPerMinute} 타`;
+          const wpmText = record.wordsPerMinute === "-" ? "-" : `${record.cpm}`;
           const accuracyText =
-            record.accuracy === "-" ? "-" : `${record.accuracy}%`;
+            record.accuracy === "-" ? "-" : `${record.accuracy}`;
 
           othersDiv.innerHTML += `
             <p class="record_${index + 2} nickname">${record.username}</p>

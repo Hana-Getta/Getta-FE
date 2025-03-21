@@ -104,14 +104,14 @@ let isCompleted = false; // 입력 완료 여부를 추적하는 플래그
 
 function updateScore() {
   const accuracy =
-    totalTyped > 0 ? ((correctTyped / totalTyped) * 100).toFixed(2) : 100;
+    totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 100;
   const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
   const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
 
   document.getElementById(
     "accuracy_score"
   ).textContent = `정확도 : ${accuracy}%`;
-  document.getElementById("cpm_score").textContent = `타수 : ${cpm}`;
+  document.getElementById("cpm_score").textContent = `cpm : ${cpm}`;
 }
 
 function startCPMTracking() {
@@ -168,7 +168,7 @@ function updateDisplay() {
 
   if (currentLineIndex >= textLines.length) {
     finalizeResult();
-    showModal(Math.floor(Math.random() * 11) + 90);
+    showModal(parseInt(result.accuracy));
     return;
   }
 
@@ -218,7 +218,7 @@ function handleInput(input) {
 function finalizeResult() {
   // 정확도와 CPM 값을 result 객체에 저장
   const accuracy =
-    totalTyped > 0 ? ((correctTyped / totalTyped) * 100).toFixed(2) : 100;
+    totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 100;
   const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
   const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
 
@@ -238,10 +238,10 @@ function finalizeResult() {
   document.getElementById(
     "accuracy_score"
   ).textContent = `정확도: ${result.accuracy}`;
-  document.getElementById("cpm_score").textContent = `타수: ${result.cpm}`;
+  document.getElementById("cpm_score").textContent = `CPM: ${result.cpm}`;
 
   const nowLanguage = localStorage.getItem("nowLanguage") || "JavaScript"; // 현재 사용 언어 가져오기
-  const username = localStorage.getItem("username") || "??who??"; // 기본값 설정
+  const username = localStorage.getItem("nowUser") || "who?"; // 기본값 설정
 
   // 기존 기록 가져오기
   let records = JSON.parse(localStorage.getItem(nowLanguage)) || [];
