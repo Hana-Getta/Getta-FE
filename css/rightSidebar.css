@@ -107,11 +107,13 @@
   cursor: pointer;
   transition: #2a2d2e 0.2s ease;
   white-space: nowrap;
+  text-align: center;
 }
 
 .sub_icon {
-  width: 17px;
-  height: 17px;
+  padding: 5px;
+  width: 16px;
+  height: 16px;
 }
 .sub_ranker {
   display: flex;
