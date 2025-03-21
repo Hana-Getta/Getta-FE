@@ -1,5 +1,5 @@
 const textLines = [
-  "#include <iostream>",
+  "#':include <iostream>",
   "using namespace std;",
   "int main() {",
   '  cout << "Hello, World!" << endl;',
@@ -102,6 +102,11 @@ function handleInput(input) {
   }
   updateDisplay();
   keyboard.setInput(currentInput);
+
+  if (currentLineIndex >= textLines.length) {
+    let accuracy = Math.floor(Math.random() * 11) + 90; //임의값 전달
+    showModal(accuracy);
+  }
 }
 
 function highlightNextKey() {
@@ -110,19 +115,30 @@ function highlightNextKey() {
     .querySelectorAll(".hg-button")
     .forEach((key) => key.classList.remove("highlight-key"));
 
+  if (isShiftRequired(nextChar)) {
+    document
+      .querySelectorAll(
+        ".hg-button[data-skbtn='{shiftleft}'], .hg-button[data-skbtn='{shiftright}']"
+      )
+      .forEach((shiftKey) => shiftKey.classList.add("highlight-key"));
+  }
+
   if (nextChar) {
+    if (nextChar === "\\") {
+      nextChar = "\\\\"; // 백슬래시 처리
+    } else if (nextChar === "'") {
+      nextChar = "\\'"; // 작은따옴표 처리
+    } else if (nextChar === '"') {
+      nextChar = '\\"'; // 큰따옴표 처리
+    } else if (nextChar === ":") {
+      nextChar = "\\:"; // 콜론 처리
+    } else {
+      nextChar = `'${nextChar}'`;
+    }
     let keyElement = document.querySelector(
-      `.hg-button[data-skbtn='${nextChar}'`
+      `.hg-button[data-skbtn=${nextChar}`
     );
     if (keyElement) keyElement.classList.add("highlight-key");
-
-    if (isShiftRequired(nextChar)) {
-      document
-        .querySelectorAll(
-          ".hg-button[data-skbtn='{shiftleft}'], .hg-button[data-skbtn='{shiftright}']"
-        )
-        .forEach((shiftKey) => shiftKey.classList.add("highlight-key"));
-    }
   }
 }
 
