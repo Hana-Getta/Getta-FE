@@ -7,6 +7,7 @@
 }
 
 #text-display {
+  white-space: pre-wrap;
   font-size: 27px;
   vertical-align: middle;
   padding: 30px;
@@ -16,13 +17,6 @@
   width: 70%;
   min-height: 320;
   background-color: rgba(188, 188, 188, 0.12);
-}
-
-#text-display pre {
-  width: 100%;
-  white-space: wrap;
-
-  overflow: hidden;
 }
 
 .current-line {

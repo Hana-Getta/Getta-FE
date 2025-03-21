@@ -1,17 +1,17 @@
 const textLines = [
-  "#",
+  "#include <iostream>",
   "using namespace std;",
   "int main() {",
-  '  cout << "Hello, World!" << endl;',
-  "  return 0;",
+  '   cout << "Hello, World!" << endl;',
+  "   return 0;",
   "}",
   "// This is a sample C++ program",
   "// It prints 'Hello, World!' to the console",
   "int add(int a, int b) {",
-  "  return a + b;",
+  "   return a + b;",
   "}",
   "void greet() {",
-  '  cout << "Greetings!" << endl;',
+  '   cout << "Greetings!" << endl;',
   "}",
 ];
 
@@ -54,11 +54,11 @@ const keyboard = new SimpleKeyboard.default({
 function updateDisplay() {
   textDisplay.innerHTML = "";
 
-  const linesToShow = 7; // 화면에 표시할 줄 수 (current-line + 위아래 한 줄씩)
+  const linesToShow = 7;
   const centerIndex = Math.floor(linesToShow / 2) - 1; // currentline 위치할 인덱스
 
   for (let i = 0; i < linesToShow; i++) {
-    let lineElement = document.createElement("pre");
+    let lineElement = document.createElement("div");
 
     // 중앙 라인 기준으로 보여줄 라인 인덱스 계산
     let lineIndex = currentLineIndex + (i - centerIndex);
@@ -66,7 +66,7 @@ function updateDisplay() {
     if (lineIndex < 0 || lineIndex >= textLines.length) {
       // 범위를 벗어난 경우 빈 줄 추가
       lineElement.className = "empty-line";
-      lineElement.textContent = "";
+      lineElement.innerText = "";
     } else {
       lineElement.className =
         lineIndex === currentLineIndex ? "current-line" : "pending-line";
@@ -81,7 +81,6 @@ function updateDisplay() {
         }
         textFragment.appendChild(span);
       });
-
       lineElement.appendChild(textFragment);
     }
 
@@ -92,15 +91,14 @@ function updateDisplay() {
 }
 
 function handleInput(input) {
+  if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(input)) {
+    return;
+  }
+
   currentInput = input;
   if (currentInput.length >= textLines[currentLineIndex].length) {
     currentLineIndex++;
     currentInput = "";
-    if (currentLineIndex === textLines.length - 1) {
-      console.log("🎉 마지막 줄 입력 완료! 모달 실행!");
-      showModal(Math.floor(Math.random() * 11) + 90); // 임의값 전달
-      return;
-    }
   }
   updateDisplay();
   keyboard.setInput(currentInput);
@@ -184,7 +182,6 @@ function handleShift(button) {
 
 document.addEventListener("keydown", (event) => {
   let name;
-
   if (event.key === "Tab") {
     event.preventDefault();
     handleInput(currentInput + "  ");
