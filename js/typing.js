@@ -2,17 +2,9 @@ const textLines = [
   "#include <iostream>",
   "using namespace std;",
   "int main() {",
-  '   cout << "Hello, World!" << endl;',
-  "   return 0;",
-  "}",
-  "// This is a sample C++ program",
-  "// It prints 'Hello, World!' to the console",
-  "int add(int a, int b) {",
-  "   return a + b;",
-  "}",
-  "void greet() {",
-  '   cout << "Greetings!" << endl;',
-  "}",
+  '  cout << "Hello, World!" << endl;',
+  "  return 0;",
+  "ll}",
 ];
 
 let currentLineIndex = 0;
@@ -87,6 +79,11 @@ function updateDisplay() {
     textDisplay.appendChild(lineElement);
   }
 
+  if (currentLineIndex >= textLines.length) {
+    showModal(Math.floor(Math.random() * 11) + 90); // 임의값 전달
+    return;
+  }
+
   highlightNextKey();
 }
 
@@ -96,6 +93,7 @@ function handleInput(input) {
   }
 
   currentInput = input;
+
   if (currentInput.length >= textLines[currentLineIndex].length) {
     currentLineIndex++;
     currentInput = "";
