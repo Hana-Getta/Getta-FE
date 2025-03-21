@@ -25,15 +25,12 @@ $(function () {
     updateChart(percentage); // 차트 업데이트 실행
   }
 
-  // 모달 닫기 함수
-  function closeModal() {
+  closeBtn.addEventListener("click", function () {
     modal.classList.remove("show");
     window.location.href = "../index.html";
-  }
-
-  closeBtn.addEventListener("click", closeModal);
+  });
   restartBtn.addEventListener("click", function () {
-    window.location.href = "../index.html";
+    window.location.href = "../typing.html";
   });
 
   // 모달 바깥 영역 클릭 시 닫기
