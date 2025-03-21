@@ -28,13 +28,13 @@ $(document).ready(function () {
           p_nickname.className = "record_nickname";
           p_nickname.innerText = firstRecord.username;
 
-          const p_wpm = document.createElement("p");
-          p_wpm.innerText = `${firstRecord.wordsPerMinute} WPM`;
+          const p_cpm = document.createElement("p");
+          p_cpm.innerText = `${firstRecord.wordsPerMinute} CPM`;
 
           const p_accuracy = document.createElement("p");
           p_accuracy.innerText = `${firstRecord.accuracy}%`;
 
-          div.append(p_lang, p_nickname, p_wpm, p_accuracy);
+          div.append(p_lang, p_nickname, p_cpm, p_accuracy);
           recordSection.append(div);
         }
       }
