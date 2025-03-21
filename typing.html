@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="./css/typingHeader.css" />
 
     <!-- 추가할 개별 css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css"
+    />
+    <link rel="stylesheet" href="./css/keyboard.css" />
+    <link rel="stylesheet" href="./css/typing.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
     <title>Getta</title>
   </head>
   <body>
@@ -31,15 +38,49 @@
           <p id="select_language">Start</p>
           <div id="header_widebar"></div>
         </div>
-        <div id="content"></div>
+        <div id="content">
+          <div id="text-display"></div>
+          <div class="keyboard-container">
+            <div class="simple-keyboard"></div>
+          </div>
+        </div>
       </main>
     </section>
+
+    <!-- 모달 창 -->
+    <div id="resultModal" class="modal">
+      <!-- 모달 컨텐츠 -->
+      <div class="modal_content">
+        <p class="modal_top">Result</p>
+        <div class="modal_middle">
+          <div class="value_container">
+            <p id="cpm_value">타수 :</p>
+            <p d="accuracy_value">정확도 :</p>
+          </div>
+          <div class="chart-container">
+            <div class="chart" id="donutChart">
+              <div class="percentage" id="percentageText">90%</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal_bottom">
+          <button id="closeBtn">그만하기</button>
+          <button id="restartBtn">다시하기</button>
+        </div>
+      </div>
+    </div>
+
     <!-- js -->
     <script
       type="text/javascript"
       src="https://code.jquery.com/jquery-3.6.0.min.js"
     ></script>
     <script type="text/javascript" src="./js/defaultComponent.js"></script>
+
+    <!-- 개별 js -->
     <script type="text/javascript" src="./js/typingHeader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <script type="text/javascript" src="./js/modal.js"></script>
+    <script type="text/javascript" src="./js/typing.js"></script>
   </body>
 </html>
