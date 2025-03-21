@@ -81,5 +81,5 @@ displayRankers(
   "js"
 );
 displayRankers("Python", "py_sub_dropdown", "./images/python.png", "py");
-displayRankers("Java", "java_sub_dropdown", "./images/java.png", "java");
+displayRankers("JAVA", "java_sub_dropdown", "./images/java.png", "java");
 displayRankers("HTML", "html_sub_dropdown", "./images/html.png", "html");
