@@ -28,3 +28,9 @@ $(function () {
     $("#loading").fadeOut();
   });
 });
+
+const cssPath = window.location.hostname.endsWith("github.io")
+  ? "/Getta-FE/css/header.css"
+  : "/css/header.css";
+
+document.getElementById("header-css").href = cssPath;
