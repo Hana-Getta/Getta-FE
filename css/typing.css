@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
+/* 결과 보여주는 곳 */
+#score_display {
+  display: grid;
+  grid-template-columns: 120px 160px;
+  column-gap: 20px;
+}
+
+#score_display div {
+  text-align: start;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--lightGreyText);
+}
+
+/* 텍스트 보여주는 곳 */
 #text-display {
   white-space: pre-wrap;
   font-size: 27px;
@@ -46,6 +61,7 @@
   color: black;
 }
 
+/* 키보드 보여주는 곳 */
 .keyboard-container {
   width: calc(70% + 60px);
 }
