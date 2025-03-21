@@ -18,6 +18,7 @@
     <!-- 추가할 개별 css -->
     <link rel="stylesheet" href="./css/keyboard.css" />
     <link rel="stylesheet" href="./css/typing.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
     <title>Getta</title>
   </head>
   <body>
@@ -39,6 +40,29 @@
       </main>
     </section>
 
+    <!-- 모달 창 -->
+    <div id="resultModal" class="modal">
+      <!-- 모달 컨텐츠 -->
+      <div class="modal_content">
+        <p class="modal_top">Result</p>
+        <div class="modal_middle">
+          <div>
+            <p>타수 :</p>
+            <p>정확도 :</p>
+          </div>
+          <div class="chart-container">
+            <div class="chart" id="donutChart">
+              <div class="percentage" id="percentageText">90%</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal_bottom">
+          <button id="closeBtn">그만하기</button>
+          <button id="restartBtn">다시하기</button>
+        </div>
+      </div>
+    </div>
+
     <!-- js -->
     <script
       type="text/javascript"
@@ -48,6 +72,7 @@
 
     <!-- 개별 js -->
     <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <script type="text/javascript" src="./js/modal.js"></script>
     <script type="text/javascript" src="./js/typing.js"></script>
   </body>
 </html>

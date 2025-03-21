@@ -14,7 +14,15 @@
   border-radius: 10px;
   overflow: hidden;
   width: 70%;
+  min-height: 320;
   background-color: rgba(188, 188, 188, 0.12);
+}
+
+#text-display pre {
+  width: 100%;
+  white-space: wrap;
+
+  overflow: hidden;
 }
 
 .current-line {

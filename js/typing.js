@@ -1,5 +1,5 @@
 const textLines = [
-  "#':include <iostream>",
+  "#",
   "using namespace std;",
   "int main() {",
   '  cout << "Hello, World!" << endl;',
@@ -52,10 +52,7 @@ const keyboard = new SimpleKeyboard.default({
 });
 
 function updateDisplay() {
-  // 기존 내용 초기화
-  while (textDisplay.firstChild) {
-    textDisplay.removeChild(textDisplay.firstChild);
-  }
+  textDisplay.innerHTML = "";
 
   const linesToShow = 7; // 화면에 표시할 줄 수 (current-line + 위아래 한 줄씩)
   const centerIndex = Math.floor(linesToShow / 2) - 1; // currentline 위치할 인덱스
@@ -99,14 +96,14 @@ function handleInput(input) {
   if (currentInput.length >= textLines[currentLineIndex].length) {
     currentLineIndex++;
     currentInput = "";
+    if (currentLineIndex === textLines.length - 1) {
+      console.log("🎉 마지막 줄 입력 완료! 모달 실행!");
+      showModal(Math.floor(Math.random() * 11) + 90); // 임의값 전달
+      return;
+    }
   }
   updateDisplay();
   keyboard.setInput(currentInput);
-
-  if (currentLineIndex >= textLines.length) {
-    let accuracy = Math.floor(Math.random() * 11) + 90; //임의값 전달
-    showModal(accuracy);
-  }
 }
 
 function highlightNextKey() {
