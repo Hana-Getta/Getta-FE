@@ -1,3 +1,18 @@
+function UserRecord(lang, username, cpm, accuracy, time) {
+  this.language = lang;
+  this.username = username;
+  this.cpm = cpm;
+  this.accuracy = accuracy;
+  this.time = time;
+}
+
+function LangRecord(username, cpm, accuracy, time) {
+  this.username = username;
+  this.cpm = cpm;
+  this.accuracy = accuracy;
+  this.time = time;
+}
+
 const textLines = [
   "'#include <iostream>",
   "using namespace std;",
@@ -59,8 +74,10 @@ function updateScore() {
   const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
   const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
 
-  document.getElementById("accuracy").textContent = `정확도: ${accuracy}%`;
-  document.getElementById("cpm").textContent = `CPM: ${cpm}`;
+  document.getElementById(
+    "accuracy_score"
+  ).textContent = `정확도 : ${accuracy}%`;
+  document.getElementById("cpm_score").textContent = `타수 : ${cpm}`;
 }
 
 function startCPMTracking() {
@@ -116,7 +133,8 @@ function updateDisplay() {
   }
 
   if (currentLineIndex >= textLines.length) {
-    showModal(Math.floor(Math.random() * 11) + 90); // 임의값 전달
+    finalizeResult();
+    showModal(Math.floor(Math.random() * 11) + 90);
     return;
   }
 
@@ -156,12 +174,6 @@ function handleInput(input) {
   if (currentInput.length >= textLines[currentLineIndex].length) {
     currentLineIndex++;
     currentInput = "";
-
-    // 마지막 줄까지 입력 완료 시 처리
-    if (currentLineIndex >= textLines.length) {
-      finalizeResult(); // 결과 저장 및 계산 중단
-      return;
-    }
   }
 
   updateDisplay();
@@ -190,25 +202,48 @@ function finalizeResult() {
 
   // 화면에 고정된 값 표시
   document.getElementById(
-    "typed-count"
-  ).textContent = `타자 수: ${result.totalTyped}`;
-  document.getElementById(
-    "accuracy"
+    "accuracy_score"
   ).textContent = `정확도: ${result.accuracy}`;
-  document.getElementById("cpm").textContent = `CPM: ${result.cpm}`;
+  document.getElementById("cpm_score").textContent = `타수: ${result.cpm}`;
 
-  console.log("Final Result:", result); // 디버깅용 출력
+  const nowLanguage = localStorage.getItem("nowLanguage") || "JavaScript"; // 현재 사용 언어 가져오기
+  const username = localStorage.getItem("username") || "??who??"; // 기본값 설정
+
+  // 기존 기록 가져오기
+  let records = JSON.parse(localStorage.getItem(nowLanguage)) || [];
+
+  // 새 사용자 기록 생성
+  const newRecord = new LangRecord(
+    username,
+    result.cpm,
+    result.accuracy,
+    Date().now()
+  );
+
+  // 기존 기록에 추가 후 정렬
+  records.push(newRecord);
+  records.sort((a, b) => calculateTotalScore(b) - calculateTotalScore(a)); // 내림차순 정렬
+
+  // 상위 5개만 유지
+  records = records.slice(0, 5);
+
+  // localStorage에 저장
+  localStorage.setItem(nowLanguage, JSON.stringify(records));
+
+  // 기존 "users" 데이터 가져오기
+  let allUsers = JSON.parse(localStorage.getItem("users")) || {};
+  allUsers[nowLanguage] = records;
+  localStorage.setItem("users", JSON.stringify(allUsers));
 }
 
-function calculateTotalScore() {
+function calculateTotalScore(record) {
   // accuracy를 숫자형으로 변환
-  const numericAccuracy = parseFloat(result.accuracy); // "95.67%" -> 95.67
+  const numericAccuracy = parseFloat(record.accuracy); // "95.67%" -> 95.67
   const weightAccuracy = 0.7; // 정확도 가중치
   const weightCpm = 0.3; // CPM 가중치
 
   // 총점 계산
-  const totalScore = numericAccuracy * weightAccuracy + result.cpm * weightCpm;
-  console.log(`총점: ${totalScore.toFixed(2)}`);
+  const totalScore = numericAccuracy * weightAccuracy + record.cpm * weightCpm;
   return totalScore;
 }
 

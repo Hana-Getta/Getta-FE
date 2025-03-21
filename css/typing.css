@@ -2,14 +2,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   box-sizing: border-box;
 }
 
 /* 결과 보여주는 곳 */
 #score_display {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 120px 160px;
+  column-gap: 20px;
+}
+
+#score_display div {
+  text-align: start;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--lightGreyText);
 }
 
 /* 텍스트 보여주는 곳 */
