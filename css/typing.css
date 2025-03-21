@@ -37,23 +37,23 @@
 }
 
 .current-line {
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   vertical-align: middle;
-  font-size: 30px;
+  font-size: 28px;
   font-variation-settings: "wght" 800;
   color: rgb(177, 177, 177);
 }
 .pending-line {
-  font-size: 25px;
-  line-height: 35px;
+  font-size: 20px;
+  line-height: 30px;
   vertical-align: middle;
   font-variation-settings: "wght" 500;
   color: rgb(83, 83, 83);
 }
 
 .empty-line {
-  height: 35px;
+  height: 30px;
   visibility: hidden;
 }
 
