@@ -251,7 +251,7 @@ function finalizeResult() {
     username,
     result.cpm,
     result.accuracy,
-    Date().now()
+    Date.now()
   );
 
   // 기존 기록에 추가 후 정렬
