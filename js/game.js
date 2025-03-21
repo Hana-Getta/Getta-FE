@@ -33,7 +33,10 @@ const words = [
 const gameContainer = document.getElementById("game_container");
 const inputField = document.getElementById("input_field");
 const scoreDisplay = document.getElementById("score");
+const timerDisplay = document.getElementById("timer");
+
 let score = 0;
+let timeLeft = 60;
 
 function createWord() {
   const word = document.createElement("div");
@@ -47,30 +50,59 @@ function createWord() {
 
 function moveWord(word) {
   let interval = setInterval(() => {
-    let currentTop = parseInt(word.style.top);
+    let currentTop = parseFloat(word.style.top);
     if (currentTop < gameContainer.clientHeight - 20) {
-      word.style.top = currentTop + 10 + "px";
+      word.style.top = currentTop + 5 + "px";
     } else {
       gameContainer.removeChild(word);
       clearInterval(interval);
     }
-  }, 100);
+  }, 50);
 }
 
-// 중복 발생시 첫번째 요소 제거 포함
-inputField.addEventListener("input", () => {
-  const inputText = inputField.value.trim();
-  const wordsOnScreen = document.querySelectorAll(".word");
+inputField.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    const inputText = inputField.value.trim();
+    const wordsOnScreen = document.querySelectorAll(".word");
+    let found = false;
 
-  for (let word of wordsOnScreen) {
-    if (word.innerText === inputText) {
-      gameContainer.removeChild(word);
-      score += 10;
-      scoreDisplay.innerText = score;
-      inputField.value = "";
-      break;
+    for (let word of wordsOnScreen) {
+      if (word.innerText === inputText) {
+        gameContainer.removeChild(word);
+        score += 10;
+        scoreDisplay.innerText = score;
+        found = true;
+        break;
+      }
     }
+
+    inputField.value = "";
   }
 });
 
 setInterval(createWord, 2000);
+
+function startTimer() {
+  timerDisplay.innerText = `Time: ${timeLeft}s`;
+  let timerInterval = setInterval(() => {
+    timeLeft--;
+    timerDisplay.innerText = `Time: ${timeLeft}s`;
+
+    // 5초 이하로 남으면 timer 색상을 빨간색으로 변경
+    if (timeLeft <= 5) {
+      timerDisplay.style.color = "red";
+    }
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      endGame();
+    }
+  }, 1000);
+}
+
+function endGame() {
+  alert(`Game Over! Your score: ${score}`);
+  location.reload();
+}
+
+startTimer();
