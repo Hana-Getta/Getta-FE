@@ -14,7 +14,10 @@ function LangRecord(username, cpm, accuracy, time) {
 }
 
 const nowLanguage = localStorage.getItem("nowLanguage") || "JavaScript"; // 현재 사용 언어 가져오기
-const textLines = examples[nowLanguage][parseInt(Math.round(Math.random()))];
+const textLines =
+  nowLanguage === "JavaScript"
+    ? examples[nowLanguage][0]
+    : examples[nowLanguage][parseInt(Math.round(Math.random()))];
 const origin = textLines;
 
 let currentLineIndex = 0;
