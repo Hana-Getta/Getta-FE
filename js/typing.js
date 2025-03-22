@@ -13,11 +13,8 @@ function LangRecord(username, cpm, accuracy, time) {
   this.time = time;
 }
 
-const textLines = [
-  "  return numbers.map(num => num * 2).filter(num => num > 10);",
-  "  await delayedGreeting('This message appears after 2 seconds.', 2000);",
-];
-
+const nowLanguage = localStorage.getItem("nowLanguage") || "JavaScript"; // 현재 사용 언어 가져오기
+const textLines = examples[nowLanguage][parseInt(Math.round(Math.random()))];
 const origin = textLines;
 
 let currentLineIndex = 0;
@@ -202,7 +199,6 @@ function finalizeResult() {
   ).textContent = `정확도: ${result.accuracy}`;
   document.getElementById("cpm_score").textContent = `CPM: ${result.cpm}`;
 
-  const nowLanguage = localStorage.getItem("nowLanguage") || "JavaScript"; // 현재 사용 언어 가져오기
   const username = localStorage.getItem("nowUser") || "who?"; // 기본값 설정
 
   // 기존 기록 가져오기
