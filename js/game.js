@@ -35,10 +35,14 @@ const gameContainer = document.getElementById("game_container");
 const inputField = document.getElementById("input_field");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
-
 const modal = document.getElementById("modal");
 const nicknameInput = document.getElementById("nickname");
 const startButton = document.getElementById("startGame");
+
+const endModal = document.createElement("div");
+endModal.classList.add("modal");
+endModal.style.display = "none";
+document.body.appendChild(endModal);
 
 let score = 0;
 let timeLeft = 60;
@@ -62,7 +66,9 @@ function moveWord(word) {
     if (currentTop < gameContainer.clientHeight - 20) {
       word.style.top = currentTop + 5 + "px";
     } else {
-      gameContainer.removeChild(word);
+      if (gameContainer.contains(word)) {
+        gameContainer.removeChild(word);
+      }
       clearInterval(interval);
     }
   }, 50);
@@ -72,18 +78,17 @@ inputField.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && gameStarted) {
     const inputText = inputField.value.trim();
     const wordsOnScreen = document.querySelectorAll(".word");
-    let found = false;
 
     for (let word of wordsOnScreen) {
       if (word.innerText === inputText) {
-        gameContainer.removeChild(word);
+        if (gameContainer.contains(word)) {
+          gameContainer.removeChild(word);
+        }
         score += 10;
         scoreDisplay.innerText = score;
-        found = true;
         break;
       }
     }
-
     inputField.value = "";
   }
 });
@@ -114,8 +119,54 @@ function startTimer() {
 }
 
 function endGame() {
-  alert(`Game Over! Your score: ${score}`);
+  gameStarted = false;
+  clearInterval(wordInterval);
+  saveScore();
+  showEndModal();
+}
+
+function saveScore() {
+  const nickname = localStorage.getItem("nowGameUser");
+  let scores = JSON.parse(localStorage.getItem("gameScores")) || [];
+  scores.push({ name: nickname, score: score });
+  scores.sort((a, b) => b.score - a.score);
+  localStorage.setItem("gameScores", JSON.stringify(scores));
+}
+
+function showEndModal() {
+  let scores = JSON.parse(localStorage.getItem("gameScores")) || [];
+  let rank = scores.findIndex((entry) => entry.score === score) + 1;
+
+  let scoreListHTML = scores
+    .slice(0, 5)
+    .map(
+      (entry, index) => `<p>${index + 1}. ${entry.name} - ${entry.score}점</p>`
+    )
+    .join("");
+
+  endModal.innerHTML = `
+    <div class="modal-content">
+      <h2>Game Over</h2>
+      <p>${localStorage.getItem("nowGameUser")}님의 점수: ${score}점</p>
+      <p>${localStorage.getItem("nowGameUser")}님의 순위: ${rank}위</p>
+      <h3>🏆 순위표 🏆</h3>
+      ${scoreListHTML}
+      <div id="modal-buttons">
+        <button onclick="restartGame()">다시하기</button>
+        <button onclick="closeGame()">그만하기</button>
+      </div>
+    </div>
+  `;
+  endModal.style.display = "flex";
+}
+
+function restartGame() {
+  endModal.style.display = "none";
   location.reload();
+}
+
+function closeGame() {
+  endModal.style.display = "none";
 }
 
 startButton.addEventListener("click", () => {
@@ -129,12 +180,6 @@ startButton.addEventListener("click", () => {
     inputField.focus();
   } else {
     alert("닉네임을 입력해주세요.");
-  }
-});
-
-window.addEventListener("click", (event) => {
-  if (!modal.contains(event.target) && !gameStarted) {
-    modal.style.display = "none";
   }
 });
 
