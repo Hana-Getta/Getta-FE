@@ -88,18 +88,24 @@ function startTimer() {
     timeLeft--;
     timerDisplay.innerText = `Time: ${timeLeft}s`;
 
-    // 5초 이하로 남으면 timer 색상을 빨간색으로 변경
-    if (timeLeft <= 5) {
+    if (timeLeft <= 10) {
       timerDisplay.style.color = "red";
+      if (!timerDisplay.blinking) {
+        timerDisplay.blinking = setInterval(() => {
+          timerDisplay.style.visibility =
+            timerDisplay.style.visibility === "hidden" ? "visible" : "hidden";
+        }, 200);
+      }
     }
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
+      clearInterval(timerDisplay.blinking);
+      timerDisplay.style.visibility = "visible";
       endGame();
     }
   }, 1000);
 }
-
 function endGame() {
   alert(`Game Over! Your score: ${score}`);
   location.reload();
