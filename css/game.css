@@ -89,3 +89,59 @@ body {
   font-size: 16px;
   white-space: nowrap;
 }
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  color: white;
+  border: solid 3px #3d9bf5;
+}
+
+#nickname {
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid var(--titleBorder);
+  background-color: var(--titleBackground);
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+#nickname:focus {
+  outline: none;
+  border-color: #888;
+}
+
+#startGame {
+  padding: 10px 20px;
+  border: solid 2px #474747;
+  background-color: #242424;
+  color: white;
+  cursor: pointer;
+}
+
+#startGame:hover {
+  cursor: pointer;
+  background-color: #24242492;
+}

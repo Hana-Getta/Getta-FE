@@ -30,13 +30,21 @@ const words = [
   "$(VAR)",
   "<%=id%>",
 ];
+
 const gameContainer = document.getElementById("game_container");
 const inputField = document.getElementById("input_field");
 const scoreDisplay = document.getElementById("score");
 const timerDisplay = document.getElementById("timer");
 
+const modal = document.getElementById("modal");
+const nicknameInput = document.getElementById("nickname");
+const startButton = document.getElementById("startGame");
+
 let score = 0;
 let timeLeft = 60;
+let gameStarted = false;
+let timerInterval;
+let wordInterval;
 
 function createWord() {
   const word = document.createElement("div");
@@ -61,7 +69,7 @@ function moveWord(word) {
 }
 
 inputField.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
+  if (event.key === "Enter" && gameStarted) {
     const inputText = inputField.value.trim();
     const wordsOnScreen = document.querySelectorAll(".word");
     let found = false;
@@ -80,11 +88,9 @@ inputField.addEventListener("keydown", (event) => {
   }
 });
 
-setInterval(createWord, 2000);
-
 function startTimer() {
   timerDisplay.innerText = `Time: ${timeLeft}s`;
-  let timerInterval = setInterval(() => {
+  timerInterval = setInterval(() => {
     timeLeft--;
     timerDisplay.innerText = `Time: ${timeLeft}s`;
 
@@ -106,9 +112,34 @@ function startTimer() {
     }
   }, 1000);
 }
+
 function endGame() {
   alert(`Game Over! Your score: ${score}`);
   location.reload();
 }
 
-startTimer();
+startButton.addEventListener("click", () => {
+  const nickname = nicknameInput.value.trim();
+  if (nickname) {
+    gameStarted = true;
+    modal.style.display = "none";
+    startTimer();
+
+    wordInterval = setInterval(createWord, 2000);
+
+    inputField.focus();
+  } else {
+    alert("Please enter a nickname!");
+  }
+});
+
+window.addEventListener("click", (event) => {
+  if (!modal.contains(event.target)) {
+    modal.style.display = "none";
+    gameStarted = false;
+  }
+});
+
+window.onload = () => {
+  modal.style.display = "flex";
+};
