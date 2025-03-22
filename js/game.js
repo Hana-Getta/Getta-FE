@@ -121,22 +121,20 @@ function endGame() {
 startButton.addEventListener("click", () => {
   const nickname = nicknameInput.value.trim();
   if (nickname) {
+    localStorage.setItem("nowGameUser", nickname);
     gameStarted = true;
     modal.style.display = "none";
     startTimer();
-
     wordInterval = setInterval(createWord, 2000);
-
     inputField.focus();
   } else {
-    alert("Please enter a nickname!");
+    alert("닉네임을 입력해주세요.");
   }
 });
 
 window.addEventListener("click", (event) => {
-  if (!modal.contains(event.target)) {
+  if (!modal.contains(event.target) && !gameStarted) {
     modal.style.display = "none";
-    gameStarted = false;
   }
 });
 
