@@ -231,11 +231,14 @@ function finalizeResult() {
 function calculateTotalScore(record) {
   // accuracy를 숫자형으로 변환
   const numericAccuracy = parseFloat(record.accuracy); // "95.67%" -> 95.67
-  const weightAccuracy = 0.7; // 정확도 가중치
-  const weightCpm = 0.3; // CPM 가중치
+  const weightAccuracy = 1; // 정확도 가중치
+  const weightCpm = 0.1; // CPM 가중치
 
   // 총점 계산
-  const totalScore = numericAccuracy * weightAccuracy + record.cpm * weightCpm;
+  const totalScore =
+    numericAccuracy < 10
+      ? 0
+      : numericAccuracy * weightAccuracy + record.cpm * weightCpm;
   return totalScore;
 }
 
