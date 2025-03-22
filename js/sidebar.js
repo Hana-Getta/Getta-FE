@@ -18,6 +18,8 @@ if (window.location.pathname.includes("index.html")) {
     selectedIcon = "game_select";
     localStorage.setItem("selectedIcon", selectedIcon);
   }
+  const user = document.getElementById("select");
+  user.innerText = "Acid Rain";
 }
 
 const localIcon = document.getElementById(selectedIcon);

@@ -43,7 +43,9 @@ body {
 
 #score {
   font-size: 1em;
-  color: lightgreen;
+  color: #6a9955;
+  position: relative;
+  top: 2px;
 }
 
 #timer {
