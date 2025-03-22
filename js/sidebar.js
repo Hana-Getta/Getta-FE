@@ -5,14 +5,41 @@ const rankerDropdown = document.getElementById("ranker_dropdown");
 const underArrow = document.querySelector(".under_arrow");
 const languageToggles = document.querySelectorAll(".language_drop_top");
 
-default_select.classList.add("selected");
-// Left-sidebar 선택시 색깔 바뀜
+let selectedIcon = localStorage.getItem("selectedIcon");
+
+if (window.location.pathname.includes("index.html")) {
+  if (selectedIcon === "game_select") {
+    localStorage.removeItem("selectedIcon");
+    selectedIcon = "default_select";
+    localStorage.setItem("selectedIcon", selectedIcon);
+  }
+} else if (window.location.pathname.includes("game.html")) {
+  if (!selectedIcon) {
+    selectedIcon = "game_select";
+    localStorage.setItem("selectedIcon", selectedIcon);
+  }
+}
+
+const localIcon = document.getElementById(selectedIcon);
+if (localIcon) {
+  localIcon.classList.add("selected");
+}
+
+// 아이콘 클릭 이벤트
 icon_wrapper.forEach((icon) => {
   icon.addEventListener("click", () => {
+    if (!icon.id) {
+      localStorage.removeItem("selectedIcon");
+      localStorage.setItem("selectedIcon", "default_select");
+      selectedIcon = "default_select";
+    } else {
+      localStorage.setItem("selectedIcon", icon.id);
+      selectedIcon = icon.id;
+    }
+
     icon_wrapper.forEach((el) => {
       el.classList.remove("selected");
     });
-
     icon.classList.add("selected");
   });
 });
@@ -51,18 +78,15 @@ function displayRankers(language, elementId, imageSrc, fileExtension) {
   if (rankers) {
     const subDropdown = document.getElementById(elementId);
     rankers.forEach((data) => {
-      // sub_ranker 추가
       const newDiv = document.createElement("div");
       newDiv.className = "sub_ranker";
       const newSubRanker = subDropdown.appendChild(newDiv);
 
-      // sub_icon 추가
       const subIcon = document.createElement("img");
       subIcon.className = "sub_icon";
       subIcon.src = imageSrc;
       newSubRanker.appendChild(subIcon);
 
-      // sub_item 추가
       const subItem = document.createElement("div");
       subItem.className = "sub_item";
       subItem.textContent = `${data.username}.${fileExtension}`;
@@ -87,5 +111,11 @@ displayRankers("HTML", "html_sub_dropdown", "./images/html.png", "html");
 // 게임버튼 누르면 게임창으로 이동
 $("#game_select").click(function (e) {
   e.preventDefault();
+  localStorage.setItem("selectedIcon", "game_select"); // 게임 페이지에서 선택된 아이콘 저장
   window.location.href = "game.html";
+});
+
+$("#default_select").click(function (e) {
+  e.preventDefault();
+  window.location.href = "index.html";
 });
