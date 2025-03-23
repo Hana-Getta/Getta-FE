@@ -139,6 +139,12 @@ function updateDisplay() {
 
 function handleInput(input) {
   if (isCompleted) return; // 입력 완료 상태에서는 추가 처리 중단
+
+  // 자동 입력 중에는 수동 입력을 무시
+  if (isAutoTyping) {
+    return;
+  }
+
   startCPMTracking(); // 타이핑 시작 시 CPM 추적 시작
 
   if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(input)) {
@@ -412,6 +418,7 @@ const EASTER_EGG_WHITELIST = ["SonSuBin", "parkhyunseo", "yangdaehan", "sanghyun
 const TARGET_AUTO_CPM = 850; // 자동 입력 시 목표 CPM
 const AUTO_INPUT_INTERVAL = 60000 / TARGET_AUTO_CPM; // 자동 입력 간격 (밀리초 단위)
 
+let isAutoTyping = false; // 자동 입력 상태를 추적하는 플래그
 
 function startEasterEgg() {
   const currentUser = localStorage.getItem("nowUser"); // 현재 사용자 닉네임 가져오기
@@ -419,6 +426,7 @@ function startEasterEgg() {
   // 닉네임이 화이트리스트에 포함되어 있는지 확인
   if (EASTER_EGG_WHITELIST.includes(currentUser)) {
     let autoInputIndex = 0;
+    isAutoTyping = true; // 자동 입력 시작
 
     // 타이핑 시작 시간 설정
     if (!startTime) {
@@ -429,6 +437,7 @@ function startEasterEgg() {
       // 입력 완료 상태이거나 모든 줄을 입력한 경우 자동 입력 중단
       if (isCompleted || currentLineIndex >= textLines.length) {
         clearInterval(autoInputInterval);
+        isAutoTyping = false; // 자동 입력 종료
         if (!isCompleted) {
           isCompleted = true; // 입력 완료 상태 설정
           finalizeResult(); // 입력 완료 처리
