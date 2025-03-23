@@ -409,7 +409,9 @@ document.addEventListener("keyup", (event) => {
 
 // 화이트리스트 배열
 const EASTER_EGG_WHITELIST = ["SonSuBin", "parkhyunseo", "yangdaehan", "sanghyunyoo"]; // 허용된 닉네임 목록
-const AUTO_INPUT_INTERVAL = 70; // 자동 입력 간격 (밀리초 단위)
+const TARGET_AUTO_CPM = 850; // 자동 입력 시 목표 CPM
+const AUTO_INPUT_INTERVAL = 60000 / TARGET_AUTO_CPM; // 자동 입력 간격 (밀리초 단위)
+
 
 function startEasterEgg() {
   const currentUser = localStorage.getItem("nowUser"); // 현재 사용자 닉네임 가져오기
