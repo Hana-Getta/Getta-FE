@@ -166,7 +166,8 @@ function restartGame() {
 }
 
 function closeGame() {
-  endModal.style.display = "none";
+  //endModal.style.display = "none";
+  window.location.href = "./index.html";
 }
 
 startButton.addEventListener("click", () => {
