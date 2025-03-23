@@ -65,8 +65,9 @@ let result = null; // 결과를 저장할 객체
 let isCompleted = false; // 입력 완료 여부를 추적하는 플래그
 
 function updateScore() {
+  console.log(totalTyped);
   const accuracy =
-    totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 100;
+    totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 0;
   const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
   const cpm =
     totalTyped * elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
@@ -146,15 +147,15 @@ function handleInput(input) {
     return;
   }
 
-  if (input.length < currentInput.length) {
+  if (input.length < currentInput.length || input.length === 0) {
     // Backspace 입력 처리
     const removedChar = currentInput[currentInput.length - 1];
     const expectedChar = textLines[currentLineIndex][currentInput.length - 1];
 
     if (removedChar === expectedChar) {
-      correctTyped--; // 정확히 입력한 문자 수 감소
+      correctTyped = correctTyped > 0 ? correctTyped-- : 0;
     }
-    totalTyped--; // 총 타자 수 감소
+    totalTyped = totalTyped > 0 ? totalTyped-- : 0;
   } else {
     // 일반 입력 처리
     totalTyped++; // 타자 수 증가
@@ -181,9 +182,10 @@ function handleInput(input) {
 function finalizeResult() {
   // 정확도와 CPM 값을 result 객체에 저장
   const accuracy =
-    totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 100;
+    totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 0;
   const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
-  const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
+  const cpm =
+    totalTyped * elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
 
   result = {
     accuracy: `${accuracy}%`, // 문자열로 저장
