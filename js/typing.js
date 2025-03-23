@@ -26,7 +26,6 @@ const textDisplay = document.getElementById("text-display");
 const keyboard = new SimpleKeyboard.default({
   onChange: (input) => handleInput(input),
   onKeyPress: (button) => handleKeyPress(button),
-  //physicalKeyboardHighlight: true,
   layout: {
     default: [
       "` 1 2 3 4 5 6 7 8 9 0 - = {backspace}",
@@ -408,19 +407,31 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
-// 이스터에그: 특정 username일 경우 자동 입력 기능
-const EASTER_EGG_USERNAME = "easteregg"; // 이스터에그 활성화 조건
-const AUTO_INPUT_INTERVAL = 50; // 자동 입력 간격 (밀리초)
+// 화이트리스트 배열
+const EASTER_EGG_WHITELIST = ["SonSuBin", "parkhyunseo", "yangdaehan", "sanghyunyoo"]; // 허용된 닉네임 목록
+const AUTO_INPUT_INTERVAL = 70; // 자동 입력 간격 (밀리초 단위)
 
 function startEasterEgg() {
-  if (localStorage.getItem("nowUser") === EASTER_EGG_USERNAME) {
+  const currentUser = localStorage.getItem("nowUser"); // 현재 사용자 닉네임 가져오기
+
+  // 닉네임이 화이트리스트에 포함되어 있는지 확인
+  if (EASTER_EGG_WHITELIST.includes(currentUser)) {
     let autoInputIndex = 0;
+
+    // 타이핑 시작 시간 설정
+    if (!startTime) {
+      startTime = Date.now();
+    }
 
     const autoInputInterval = setInterval(() => {
       // 입력 완료 상태이거나 모든 줄을 입력한 경우 자동 입력 중단
       if (isCompleted || currentLineIndex >= textLines.length) {
         clearInterval(autoInputInterval);
-        finalizeResult(); // 입력 완료 처리
+        if (!isCompleted) {
+          isCompleted = true; // 입력 완료 상태 설정
+          finalizeResult(); // 입력 완료 처리
+          showModal(result.cpm, parseInt(result.accuracy)); // 결과 모달 창 표시
+        }
         return;
       }
 
@@ -429,13 +440,6 @@ function startEasterEgg() {
         currentLineIndex++;
         currentInput = "";
         autoInputIndex = 0;
-
-        // 모든 줄을 입력한 경우 자동 입력 중단
-        if (currentLineIndex >= textLines.length) {
-          clearInterval(autoInputInterval);
-          finalizeResult(); // 입력 완료 처리
-          return;
-        }
       }
 
       // 현재 줄의 다음 문자를 입력
@@ -445,7 +449,7 @@ function startEasterEgg() {
       totalTyped++;
       correctTyped++;
 
-      // 화면 업데이트
+      // 화면 및 점수 업데이트
       updateDisplay();
       updateScore();
       keyboard.setInput(currentInput);
