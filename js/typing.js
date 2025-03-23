@@ -26,7 +26,7 @@ const textDisplay = document.getElementById("text-display");
 const keyboard = new SimpleKeyboard.default({
   onChange: (input) => handleInput(input),
   onKeyPress: (button) => handleKeyPress(button),
-  physicalKeyboardHighlight: true,
+  //physicalKeyboardHighlight: true,
   layout: {
     default: [
       "` 1 2 3 4 5 6 7 8 9 0 - = {backspace}",
@@ -407,6 +407,54 @@ document.addEventListener("keyup", (event) => {
     keyElement.classList.remove("pressed-key");
   }
 });
+
+// 이스터에그: 특정 username일 경우 자동 입력 기능
+const EASTER_EGG_USERNAME = "easteregg"; // 이스터에그 활성화 조건
+const AUTO_INPUT_INTERVAL = 50; // 자동 입력 간격 (밀리초)
+
+function startEasterEgg() {
+  if (localStorage.getItem("nowUser") === EASTER_EGG_USERNAME) {
+    let autoInputIndex = 0;
+
+    const autoInputInterval = setInterval(() => {
+      // 입력 완료 상태이거나 모든 줄을 입력한 경우 자동 입력 중단
+      if (isCompleted || currentLineIndex >= textLines.length) {
+        clearInterval(autoInputInterval);
+        finalizeResult(); // 입력 완료 처리
+        return;
+      }
+
+      // 현재 줄의 모든 문자를 입력한 경우 다음 줄로 이동
+      if (autoInputIndex >= textLines[currentLineIndex].length) {
+        currentLineIndex++;
+        currentInput = "";
+        autoInputIndex = 0;
+
+        // 모든 줄을 입력한 경우 자동 입력 중단
+        if (currentLineIndex >= textLines.length) {
+          clearInterval(autoInputInterval);
+          finalizeResult(); // 입력 완료 처리
+          return;
+        }
+      }
+
+      // 현재 줄의 다음 문자를 입력
+      const nextChar = textLines[currentLineIndex][autoInputIndex];
+      currentInput += nextChar;
+      autoInputIndex++;
+      totalTyped++;
+      correctTyped++;
+
+      // 화면 업데이트
+      updateDisplay();
+      updateScore();
+      keyboard.setInput(currentInput);
+    }, AUTO_INPUT_INTERVAL);
+  }
+}
+
+// 이스터에그 기능 시작
+startEasterEgg();
 
 updateDisplay();
 // 페이지를 떠날 때 타이머 정리
