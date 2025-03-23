@@ -68,7 +68,8 @@ function updateScore() {
   const accuracy =
     totalTyped > 0 ? parseInt((correctTyped / totalTyped) * 100) : 100;
   const elapsedTime = (Date.now() - startTime) / 60000; // 경과 시간 (분 단위)
-  const cpm = elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
+  const cpm =
+    totalTyped * elapsedTime > 0 ? Math.floor(totalTyped / elapsedTime) : 0;
 
   document.getElementById(
     "accuracy_score"
