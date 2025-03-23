@@ -37,12 +37,12 @@ $(function () {
     window.location.href = "./typing.html";
   });
 
-  // 모달 바깥 영역 클릭 시 닫기
-  $(window).click(function (event) {
-    if (event.target === modal) {
-      modal.classList.remove("show");
-    }
-  });
+  // 모달 바깥 영역 클릭 시 닫기 -> 클릭하면 닫히면 안됨
+  // $(window).click(function (event) {
+  //   if (event.target === modal) {
+  //     modal.classList.remove("show");
+  //   }
+  // });
 
   // 다른 파일에서도 사용할 수 있게
   window.showModal = showModal;
