@@ -276,6 +276,8 @@ function highlightNextKey() {
       nextChar = '\\"'; // 큰따옴표 처리
     } else if (nextChar === ":") {
       nextChar = "\\:"; // 콜론 처리
+    } else if (nextChar === " ") {
+      nextChar = "'{space}'";
     } else {
       nextChar = `'${nextChar}'`;
     }
@@ -416,9 +418,15 @@ document.addEventListener("keyup", (event) => {
 });
 
 // 화이트리스트 배열
-const EASTER_EGG_WHITELIST = ["SonSuBin", "parkhyunseo", "yangdaehan", "sanghyunyoo"]; // 허용된 닉네임 목록
-const TARGET_AUTO_CPM = 850; // 자동 입력 시 목표 CPM
-const AUTO_INPUT_INTERVAL = 60000 / TARGET_AUTO_CPM; // 자동 입력 간격 (밀리초 단위)
+const EASTER_EGG_WHITELIST = [
+  "SonSuBin",
+  "parkhyunseo",
+  "yangdaehan",
+  "sanghyunyoo",
+  "YOO",
+]; // 허용된 닉네임 목록
+let TARGET_AUTO_CPM = 453; // 자동 입력 시 목표 CPM
+let AUTO_INPUT_INTERVAL = 60000 / TARGET_AUTO_CPM; // 자동 입력 간격 (밀리초 단위)
 
 let isAutoTyping = false; // 자동 입력 상태를 추적하는 플래그
 
