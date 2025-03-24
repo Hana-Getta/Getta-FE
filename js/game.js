@@ -54,7 +54,7 @@ function createWord() {
   const word = document.createElement("div");
   word.classList.add("word");
   word.innerText = words[Math.floor(Math.random() * words.length)];
-  word.style.left = Math.random() * (gameContainer.clientWidth - 50) + "px";
+  word.style.left = Math.random() * (gameContainer.clientWidth - 150) + "px";
   word.style.top = "0px";
   gameContainer.appendChild(word);
   moveWord(word);
