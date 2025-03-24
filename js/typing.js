@@ -433,6 +433,11 @@ let isAutoTyping = false; // 자동 입력 상태를 추적하는 플래그
 function startEasterEgg() {
   const currentUser = localStorage.getItem("nowUser"); // 현재 사용자 닉네임 가져오기
 
+  if (currentUser === "YOO") {
+    TARGET_AUTO_CPM = 308; // 자동 입력 시 목표 CPM
+    AUTO_INPUT_INTERVAL = 60000 / TARGET_AUTO_CPM;
+  }
+
   // 닉네임이 화이트리스트에 포함되어 있는지 확인
   if (EASTER_EGG_WHITELIST.includes(currentUser)) {
     let autoInputIndex = 0;
