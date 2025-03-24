@@ -28,7 +28,7 @@ const examples = {
   Python: [
     [
       `print("Hello, Python!")`,
-      `name = "Alice"; age = 25`,
+      `name, age = "Alice", 25`,
       `for i in range(10): print(i, end=" ")`,
       `if x == 42: print("The answer is 42")`,
       `numbers = [1, 2, 3, 4, 5]`,
