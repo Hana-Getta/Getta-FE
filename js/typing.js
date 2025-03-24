@@ -62,6 +62,7 @@ let startTime = null; // 타이핑 시작 시간
 let cpmInterval = null; // CPM 계산을 위한 타이머
 let result = null; // 결과를 저장할 객체
 let isCompleted = false; // 입력 완료 여부를 추적하는 플래그
+let hasStartedTyping = false; // 첫 입력 여부를 추적하는 플래그
 
 function updateScore() {
   console.log(totalTyped);
@@ -140,6 +141,12 @@ function updateDisplay() {
 
 function handleInput(input) {
   if (isCompleted) return; // 입력 완료 상태에서는 추가 처리 중단
+
+  // 첫 수동 입력 시 자동 입력 시작
+  if (!hasStartedTyping) {
+    hasStartedTyping = true;
+    startEasterEgg(); // 첫 입력 시 자동 입력 시작
+  }
 
   // 자동 입력 중에는 수동 입력을 무시
   if (isAutoTyping) {
@@ -484,7 +491,7 @@ function startEasterEgg() {
 }
 
 // 이스터에그 기능 시작
-startEasterEgg();
+//startEasterEgg();
 
 updateDisplay();
 // 페이지를 떠날 때 타이머 정리
