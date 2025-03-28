@@ -1,6 +1,13 @@
 const examples = {
   JavaScript: [
     [
+      "`const sum = (...nums) => nums.reduce((a, b) => a + b, 0);`",
+      "const obj = { name: 'Alice', greet: () => `Hi, ${obj.name}!` };",
+      "`async function fetchData(url) { try { return await fetch(url); } }`",
+      "`const formatted = arr.map((v, i) => `[${i}]: ${v ?? 'N/A'}`);`",
+      "`let count = 0; while (count++ < 5) { console.log(`Step: ${count}`); }`",
+    ],
+    [
       "const greet = (name) => { console.log(`Hello, ${name}!`); };",
       `for (let i = 0; i < arr.length; i++) { sum += arr[i] ?? 0; }`,
       "const user = { isAdmin: true, getInfo: () => `${this.isAdmin}` };",
