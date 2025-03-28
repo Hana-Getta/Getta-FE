@@ -1,16 +1,11 @@
 const examples = {
   JavaScript: [
     [
-      `console.log("Hello, JavaScript!");`,
-      `alert("This is an alert message!");`,
-      `document.body.style.backgroundColor = "lightblue";`,
-      `let randomNum = Math.floor(Math.random() * 100);`,
-      `const today = new Date().toLocaleDateString();`,
-      `document.querySelector("h1").innerText = "JavaScript Rocks!";`,
-      `setTimeout(() => alert("Executed after 1 second!"), 1000);`,
-      `let sum = [1, 2, 3, 4, 5].reduce((a, b) => a + b);`,
-      `let isEven = num => num % 2 === 0;`,
-      `document.querySelector("p").style.color = "tomato";`,
+      "const greet = (name) => { console.log(`Hello, ${name}!`); };",
+      `for (let i = 0; i < arr.length; i++) { sum += arr[i] ?? 0; }`,
+      "const user = { id: 1, isAdmin: true, getInfo: () => `${this.id}-${this.isAdmin}` };",
+      `if (typeof input === 'string' && input.trim() !== '') { return input.toUpperCase(); }`,
+      `try { JSON.parse(data); } catch (e) { console.error('Invalid JSON:', e.message); }`,
     ],
     [
       `function greetUser() {`,

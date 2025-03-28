@@ -165,9 +165,14 @@ function handleInput(input) {
     const expectedChar = textLines[currentLineIndex][currentInput.length - 1];
 
     if (removedChar === expectedChar) {
-      correctTyped = correctTyped > 0 ? correctTyped-- : 0;
+      if (correctTyped > 0) {
+        correctTyped -= 1;
+      }
     }
-    totalTyped = totalTyped > 0 ? totalTyped-- : 0;
+    if (totalTyped > 0) {
+      totalTyped -= 1;
+    }
+    console.log("왜???");
   } else {
     // 일반 입력 처리
     totalTyped++; // 타자 수 증가
