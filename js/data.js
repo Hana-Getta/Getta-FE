@@ -3,9 +3,9 @@ const examples = {
     [
       "const greet = (name) => { console.log(`Hello, ${name}!`); };",
       `for (let i = 0; i < arr.length; i++) { sum += arr[i] ?? 0; }`,
-      "const user = { id: 1, isAdmin: true, getInfo: () => `${this.id}-${this.isAdmin}` };",
-      `if (typeof input === 'string' && input.trim() !== '') { return input.toUpperCase(); }`,
-      `try { JSON.parse(data); } catch (e) { console.error('Invalid JSON:', e.message); }`,
+      "const user = { isAdmin: true, getInfo: () => `${this.isAdmin}` };",
+      `if (typeof input === 'string') { return input.toUpperCase(); }`,
+      `try { JSON.parse(data); } catch (e) { console.error(e.message); }`,
     ],
     [
       `function greetUser() {`,
