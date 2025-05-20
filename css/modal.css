@@ -1,0 +1,162 @@
+.modal {
+  box-sizing: border-box;
+  /* 스타일 - customize */
+  background-color: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  padding: 20px;
+
+  /* 트랜지션 효과 */
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+
+  /* 화면 전체를 덮게하는 코드 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* 중앙에 오게하는 코드 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_content {
+  /* 스타일 - customize */
+  max-width: 500px;
+  width: 100%;
+  height: 55%;
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: solid 3px #3d9bf5;
+  overflow: hidden;
+
+  /* 트랜지션 효과 */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  transform: scale(0.8);
+
+  /* 중앙에 오게하는 코드 */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.modal.show {
+  /* 모달이 열렸을 때 보여지게 하는 코드 */
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal.show .modal_content {
+  /* 모달이 열렸을 때 보여지게 하는 코드 */
+  opacity: 1;
+  transform: scale(1);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+.modal_top {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #cccccc;
+}
+.modal_middle {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 3%;
+  padding-left: 15%;
+  padding-right: 5%;
+}
+
+.value_container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.value_container > p {
+  color: #cccccc;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.modal_bottom {
+  color: #cccccc;
+  width: 100%;
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+}
+.modal_bottom > button {
+  width: 30%;
+  padding: 10px 20px;
+  color: #cccccc;
+  border: solid 2px #474747;
+  background-color: #242424;
+  overflow: hidden;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+.modal_bottom > button:hover {
+  cursor: pointer;
+  background-color: #24242492;
+}
+
+.chart-container {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+.chart {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: conic-gradient(#4caf50 0% 0%, #ddd 0% 100%);
+  position: relative;
+  transition: background 0.5s ease-in-out;
+}
+
+.chart::after {
+  content: "";
+  width: 48%;
+  height: 48%;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-size: 19px;
+  font-weight: bold;
+  line-height: 1.2;
+  z-index: 20;
+}

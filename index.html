@@ -3,15 +3,67 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="./images/vscode.png" />
+
+    <!-- default Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <title>Getta</title>
   </head>
   <body>
-    시작 페이지
+    <div id="loading"></div>
+    <div id="header"></div>
+    <section>
+      <div id="sidebar"></div>
+      <main>
+        <div class="breadcrumb">
+          <p id="select">Start</p>
+          <div></div>
+        </div>
+        <div id="content">
+          <div class="left_content">
+            <p>Getta Studio Code</p>
+            <p>Typing evolved</p>
+            <p>Start</p>
+            <div class="user_field">
+              <p>Nickname</p>
+              <div id="nickname_field">
+                <input
+                  type="text"
+                  id="nickname_input"
+                  placeholder="input your nickname"
+                />
+                <p id="nickname_separator"></p>
+                <button id="nickname_submit">Submit</button>
+              </div>
+              <p id="nickname_error">닉네임을 입력해주세요!</p>
+            </div>
+          </div>
+          <div class="right_content">
+            <div id="go_record">
+              <p>Records</p>
+              <p id="go_record_btn">&rarr;</p>
+            </div>
+            <div id="record_section"></div>
+          </div>
+        </div>
+      </main>
+    </section>
+    <!-- js -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script type="text/javascript" src="./js/defaultComponent.js"></script>
+    <script type="text/javascript" src="./js/index.js"></script>
   </body>
 </html>

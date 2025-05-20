@@ -3,9 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="./images/vscode.png" />
+
+    <!-- default Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/typingHeader.css" />
+
+    <!-- 추가할 개별 css -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css"
+    />
+    <link rel="stylesheet" href="./css/keyboard.css" />
+    <link rel="stylesheet" href="./css/typing.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
     <title>Getta</title>
   </head>
   <body>
-    타자 연습 페이지
+    <div id="loading"></div>
+    <div id="header"></div>
+    <section>
+      <div id="sidebar"></div>
+      <main>
+        <div class="breadcrumb">
+          <p id="select">Start</p>
+          <div id="header_bar"></div>
+          <p id="select_language">Start</p>
+          <div id="header_widebar"></div>
+        </div>
+        <div id="content">
+          <div id="score_display">
+            <div id="cpm_score">CPM :</div>
+            <div id="accuracy_score">정확도 :</div>
+          </div>
+          <div id="text-display"></div>
+          <div class="keyboard-container">
+            <div class="simple-keyboard"></div>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <!-- 모달 창 -->
+    <div id="resultModal" class="modal">
+      <!-- 모달 컨텐츠 -->
+      <div class="modal_content">
+        <p class="modal_top">Result</p>
+        <div class="modal_middle">
+          <div class="value_container">
+            <p id="cpm_value">CPM :</p>
+            <p id="accuracy_value">정확도 :</p>
+          </div>
+          <div class="chart-container">
+            <div class="chart" id="donutChart">
+              <div class="percentage" id="percentageText"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal_bottom">
+          <button id="closeBtn">그만하기</button>
+          <button id="restartBtn">다시하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- js -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script type="text/javascript" src="./js/defaultComponent.js"></script>
+
+    <!-- 개별 js -->
+    <script type="text/javascript" src="./js/typingHeader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+    <script type="text/javascript" src="./js/data.js"></script>
+    <script type="text/javascript" src="./js/modal.js"></script>
+    <script type="text/javascript" src="./js/typing.js"></script>
   </body>
 </html>

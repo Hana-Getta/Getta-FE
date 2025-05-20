@@ -1,0 +1,20 @@
+#select_language {
+  width: 130px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  border-top: 3px solid var(--borderBlue);
+  border-bottom: none;
+  z-index: 100;
+  color: var(--lightGreyText);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 300;
+}
+.breadcrumb #select {
+  border-top: 5px solid var(--backgroundColor);
+  border-bottom: 5px solid var(--borderColor);
+}
+#header_bar {
+  width: 5px;
+  background-color: var(--borderColor);
+}

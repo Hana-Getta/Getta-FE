@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="./css/leftSidebar.css" />
+    <link rel="stylesheet" href="./css/rightSidebar.css" />
+  </head>
+  <body>
+    <div id="sidebar_sidebar">
+      <div id="left">
+        <div id="default_select" class="icon_wrapper">
+          <div></div>
+          <img src="./images/file.png" />
+        </div>
+        <div id="game_select" class="icon_wrapper">
+          <div></div>
+          <img src="./images/game.png" />
+        </div>
+        <div class="icon_wrapper">
+          <div></div>
+          <img src="./images/git.png" />
+        </div>
+        <div class="icon_wrapper">
+          <div></div>
+          <img src="./images/bug.png" />
+        </div>
+        <div class="icon_wrapper">
+          <div></div>
+          <img src="./images/cubes.png" />
+        </div>
+        <div class="icon_wrapper">
+          <div></div>
+          <img src="./images/docker.png" />
+        </div>
+      </div>
+      <div id="right">
+        <div class="sidebar_right_content">
+          <div class="right_content_title">
+            <div>GETTA</div>
+            <div class="title_dots">
+              <div>ㆍ</div>
+              <div>ㆍ</div>
+              <div>ㆍ</div>
+            </div>
+          </div>
+        </div>
+        <div class="ranker_folder_top ranker_drop_top">
+          <img class="under_arrow" src="./images/under.png" />
+          <div class="ranker_title">Ranker</div>
+        </div>
+        <!-- 드롭다운 메뉴 -->
+        <div id="ranker_dropdown" class="ranker_dropdown">
+          <div class="language_rank_folder">
+            <div class="ranker_folder_top language_drop_top">
+              <img class="under_arrow" src="./images/under.png" />
+              <div class="ranker_title">Javascript</div>
+            </div>
+            <div id="js_sub_dropdown" class="sub_dropdown"></div>
+          </div>
+
+          <div class="language_rank_folder">
+            <div class="ranker_folder_top language_drop_top">
+              <img class="under_arrow" src="./images/under.png" />
+              <div class="ranker_title">Python</div>
+            </div>
+            <div id="py_sub_dropdown" class="sub_dropdown"></div>
+          </div>
+          <!-- _dropwdown -->
+          <div class="language_rank_folder">
+            <div class="ranker_folder_top language_drop_top">
+              <img class="under_arrow" src="./images/under.png" />
+              <div class="ranker_title">Java</div>
+            </div>
+            <div id="java_sub_dropdown" class="sub_dropdown"></div>
+          </div>
+
+          <div class="language_rank_folder">
+            <div class="ranker_folder_top language_drop_top">
+              <img class="under_arrow" src="./images/under.png" />
+              <div class="ranker_title">HTML</div>
+            </div>
+            <div id="html_sub_dropdown" class="sub_dropdown"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- js -->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <script src="./js/sidebar.js"></script>
+  </body>
+</html>

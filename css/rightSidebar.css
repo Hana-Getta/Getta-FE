@@ -1,0 +1,126 @@
+#right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #cccccc;
+  padding-left: 1%;
+  padding-right: 5%;
+}
+
+.ranker_folder_top,
+.ranker_dropdown {
+  font-size: 13px;
+}
+.sidebar_right_content {
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  margin-top: 10%;
+  justify-content: space-between;
+}
+
+.language_rank_folder {
+  padding-left: 14px;
+  margin-top: 7px;
+}
+.right_content_title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+.right_content_title > div:first-child {
+  font-weight: bold;
+  padding-left: 17px;
+}
+.ranker_folder_top {
+  width: 100%;
+  display: flex;
+  gap: 5%;
+  align-items: center;
+}
+.title_dots {
+  margin-top: -4%;
+  display: flex;
+  padding-left: 25%;
+}
+.title_dots div {
+  margin: 0 -4px;
+}
+
+/* 초기 상태 (숨김) */
+.ranker_dropdown {
+  display: none; /* 기본적으로 숨김 */
+  opacity: 0; /* 기본 상태에서는 보이지 않음 */
+  width: 100%;
+  transform-origin: top;
+  transition: opacity 0.3s ease-in-out; /* opacity로만 부드럽게 처리 */
+  overflow: hidden;
+}
+
+/* 'show' 클래스 추가 시 드롭다운 열림 */
+.ranker_dropdown.show {
+  display: block; /* 드롭다운 보이기 */
+  opacity: 1; /* 드롭다운이 보이도록 */
+}
+
+/* 기본적으로 서브 드롭다운 숨김 */
+.sub_dropdown {
+  display: none;
+  padding-left: 25px;
+  transform-origin: top;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* 언어 항목 헤더 (이미지 + 텍스트) */
+.language_drop_top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.ranker_folder_top {
+  cursor: pointer;
+  padding-left: 3px;
+}
+
+/* 언더(화살표) 아이콘 기본 회전 상태 */
+.under_arrow {
+  width: 10px;
+  height: 10px;
+  transform: rotate(-90deg);
+}
+/* 서브 드롭다운이 열릴 때, 아이콘을 0도로 회전 */
+.sub_dropdown.show .under_arrow {
+  transform: rotate(0deg);
+}
+
+/* 드롭다운 보이기 */
+.sub_dropdown.show {
+  display: block;
+  opacity: 1;
+}
+/* 드롭다운 내부 아이템 스타일 */
+.sub_item {
+  padding: 2px;
+  font-size: 1.1em;
+  color: white;
+  cursor: pointer;
+  transition: #2a2d2e 0.2s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.sub_icon {
+  padding: 5px;
+  width: 18px;
+  height: 18px;
+}
+.sub_ranker {
+  display: flex;
+  align-items: center;
+}
+.sub_ranker:hover,
+.sub_ranker:hover {
+  background: #44444457;
+}

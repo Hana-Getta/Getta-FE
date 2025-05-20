@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/modal.css" />
+    <title>modal</title>
+  </head>
+  <body>
+    <!-- 모달 열기 버튼 -->
+    <button id="modalBtn">모달 열기</button>
+
+    <!-- 모달 창 -->
+    <div id="resultModal" class="modal">
+      <!-- 모달 컨텐츠 -->
+      <div class="modal_content">
+        <p class="modal_top">Result</p>
+        <div class="modal_middle">
+          <div>
+            <p id="cpm_value">CPM :</p>
+            <p id="accuracy_value">정확도 :</p>
+          </div>
+          <div class="chart-container">
+            <div class="chart" id="donutChart">
+              <div class="percentage" id="percentageText">90%</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal_bottom">
+          <button id="closeBtn">그만하기</button>
+          <button id="restartBtn">다시하기</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/modal.js"></script>
+  </body>
+</html>
